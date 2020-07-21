@@ -56,7 +56,7 @@ class RightMenu extends Component {
     if (this.state.user) {
       return (
         <div className="ant-menu-item">
-            <a >
+            <div >
               {this.state.name} 
               <img
                 src={this.state.user.photoURL}
@@ -64,14 +64,14 @@ class RightMenu extends Component {
                 width="30"
                 style={{borderRadius:30}}
               />
-            </a>
+            </div>
         </div>
       );
     }
     else {
       //si no lo está
       return (
-        <a onClick={this.handleAuth}><VpnKey /></a>
+        <div onClick={this.handleAuth}><VpnKey /></div>
       );
     }
   }
@@ -84,7 +84,7 @@ class RightMenu extends Component {
           </Menu.Item>
           { this.state.user ? (
             <Menu.Item key="Logout">
-              <a className="ant-menu-item" onClick={this.handleLogout}><ExitToApp /></a>
+              <div className="ant-menu-item" onClick={this.handleLogout}><ExitToApp /></div>
             </Menu.Item>
           ) : null}
         </Menu>
