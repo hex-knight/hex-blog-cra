@@ -1,13 +1,14 @@
 @import '~antd/dist/antd.css';
 
 .menu {
-  overflow: auto;
+  padding: 0 20px;
+  border-bottom: solid 1px #282c34;
   box-shadow: 0 0 10px black;
   background-color: #282c34;
 }
 
 .menu__logo {
-  width: 70px;
+  width: 100px;
   float: left;
 }
 
