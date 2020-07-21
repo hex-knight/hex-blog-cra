@@ -9,20 +9,20 @@ import Blog from './components/views/Blog/View/Blog';
 class App extends Component {
   render() {
     return (
-      <Suspense>
+      <div>
         <NavBar />
         <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
         <div className="App">
         <header className="App-header">
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/blog/new" component={CreateBlog} />
-          <Route exact path="/blog" component={Blog} />
+          <Route path="/blog/new" component={CreateBlog} />
+          <Route path="/blog" component={Blog} />
         </Switch>
         </header>
         </div>
         </div>
-      </Suspense>
+      </div>
     );
   }
 }
