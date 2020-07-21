@@ -14,11 +14,9 @@ class App extends Component {
         <div style={{ paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
         <div className="App">
         <header className="App-header">
-        <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/blog/new" component={CreateBlog} />
           <Route path="/blog" component={Blog} />
-        </Switch>
         </header>
         </div>
         </div>

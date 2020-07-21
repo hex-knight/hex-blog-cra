@@ -4,7 +4,7 @@ export default class CreateBlog extends Component {
     render() {
         return (
             <div>
-                <h4>New Blog</h4>
+                <h4>Create Blog</h4>
             </div>
         )
     }
