@@ -4,6 +4,7 @@ import RightMenu from './Sections/RightMenu';
 import { Drawer, Button, Icon } from 'antd';
 import './Sections/Navbar.css';
 import logo from './../../../hex.png';
+import Base from '../Base/Base';
 
 function NavBar() {
   const [visible, setVisible] = useState(false)
@@ -17,6 +18,7 @@ function NavBar() {
   };
 
   return (
+    <>
     <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%' }}>
       <div className="menu__logo">
       <a href="/">
@@ -50,6 +52,8 @@ function NavBar() {
         </Drawer>
       </div>
     </nav>
+    <Base />
+    </>
   )
 }
 
