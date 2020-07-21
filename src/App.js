@@ -1,4 +1,4 @@
-import React, { Component, Suspense } from 'react';
+import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from './components/views/Home/Home';
 import CreateBlog from './components/views/Blog/New/CreateBlog';
