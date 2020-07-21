@@ -7,3 +7,11 @@ const result={
     phoneNumber: string/null,
     photoUrl: string,
 }
+//----------------------------Firebase Cloud Storage----------------
+// service firebase.storage {
+//     match /b/{bucket}/o {
+//       match /{allPaths=**} {
+//         allow read, write: if request.auth != null;
+//       }
+//     }
+//   }
