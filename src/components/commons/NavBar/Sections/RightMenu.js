@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Menu } from 'antd';
 // import firebase from 'firebase';
 import './Navbar.css';
-import { VpnKey, ExitToApp } from '@material-ui/icons/';
+//import { VpnKey, ExitToApp } from '@material-ui/icons/';
 
 class RightMenu extends Component {
   // constructor() {
