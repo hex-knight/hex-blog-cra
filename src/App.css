@@ -9,8 +9,9 @@
 }
 
 .App-header {
+  padding-top: 4vmin;
   background-color: white;
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;

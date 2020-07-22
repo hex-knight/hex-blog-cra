@@ -55,8 +55,8 @@ class RightMenu extends Component {
     //si está logueado
     if (this.state.user) {
       return (
-        <div className="ant-menu-item">
-            <div >
+        <div >
+            <p>
               {this.state.name} 
               <img
                 src={this.state.user.photoURL}
@@ -64,16 +64,27 @@ class RightMenu extends Component {
                 width="30"
                 style={{borderRadius:30}}
               />
-            </div>
+            </p>
         </div>
       );
     }
     else {
       //si no lo está
       return (
-        <div onClick={this.handleAuth}><VpnKey /></div>
+        <div onClick={this.handleAuth}>
+          <p>
+          <VpnKey />
+          </p>
+          </div>
       );
     }
+  }
+  renderLogoutButton(){
+    return(
+      <div onClick={this.handleLogout}>
+              <p ><ExitToApp/></p>
+              </div>
+    );
   }
 
   render() {
@@ -85,7 +96,7 @@ class RightMenu extends Component {
           </Menu.Item>
           { this.state.user ? (
             <Menu.Item key="Logout">
-              <div className="ant-menu-item" onClick={this.handleLogout}><ExitToApp /></div>
+              {this.renderLogoutButton()}
             </Menu.Item>
           ) : null}
         </Menu>

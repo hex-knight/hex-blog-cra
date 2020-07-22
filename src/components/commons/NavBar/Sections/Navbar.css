@@ -28,13 +28,23 @@
 }
 
 .menu__container .ant-menu-submenu-title {
-  padding: 10px 20px;
+  padding: 10px 10px;
 }
 
 .menu__container .ant-menu-item a,
 .menu__container .ant-menu-submenu-title a {
-  padding: 10px 15px;
+  padding: 10px 10px;
   color: whitesmoke;
+}
+
+.menu__container .ant-menu-item p,
+.menu__container .ant-menu-submenu-title p {
+  margin: 10px 5px 5px 5px;
+  color: whitesmoke;
+}
+
+.icon {
+  padding-top: 5px;
 }
 
 .menu__container .ant-menu-horizontal {
