@@ -40,7 +40,7 @@
 .menu__container .ant-menu-item p,
 .menu__container .ant-menu-submenu-title p {
   margin: 10px 5px 5px 5px;
-  color: whitesmoke;
+  color: whitesmoke !important;
 }
 
 .icon {
