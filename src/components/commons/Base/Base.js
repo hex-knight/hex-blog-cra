@@ -14,7 +14,7 @@ export default class Base extends Component {
         <header className="App-header">
             <Router>
             <div>
-          <Route exact path="/" component={Home} />
+          <Route path="/" component={Home} />
           <Route path="/blog/new" component={CreateBlog} />
           <Route path="/blog" component={Blog} />
           </div>
