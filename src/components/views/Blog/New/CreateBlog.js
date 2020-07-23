@@ -6,10 +6,14 @@ const { Title } = Typography;
 
 export default function CreateBlog() {
     const [content, setContent] = useState("");
-    //const [files, setFiles] = useState([]);
+    const [files, setFiles] = useState([]);
 
     const onEditorChange = (value) => {
         setContent(value);
+    }
+
+    const onFilesChange = (files) => {
+        setFiles(files)
     }
     
     const onSubmit = (event) =>{
@@ -40,7 +44,7 @@ export default function CreateBlog() {
             <QuillEditor
                 placeholder={"Start Posting Something"}
                 onEditorChange={onEditorChange}
-                // onFilesChange={onFilesChange}
+                onFilesChange={onFilesChange}
             />
 
             <Form onSubmit={onSubmit}>
@@ -50,6 +54,7 @@ export default function CreateBlog() {
                         htmlType="submit"
                         className=""
                         onSubmit={onSubmit}
+                        
                     >
                         Submit
                 </Button>

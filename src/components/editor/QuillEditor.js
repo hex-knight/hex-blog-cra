@@ -1,29 +1,9 @@
 import React from 'react';
 import ReactQuill, { Quill } from 'react-quill';
-//import "react-quill/dist/quill.snow.css";
 import "../../../node_modules/react-quill/dist/quill.snow.css";
 import axios from 'axios';
 const __ISMSIE__ = navigator.userAgent.match(/Trident/i) ? true : false;
-
-// Quill.register('modules/clipboard', PlainClipboard, true);
 const QuillClipboard = Quill.import('modules/clipboard');
-
-
-// let storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, "uploads/");
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, `${Date.now()}_${file.originalname}`);
-//     },
-//     fileFilter: (req, file, cb) => {
-//         const ext = path.extname(file.originalname)
-//         if (ext !== '.jpg' && ext !== '.png' && ext !== '.mp4') {
-//             return cb(res.status(400).end('only jpg, png, mp4 is allowed'), false);
-//         }
-//         cb(null, true)
-//     }
-// });
 
 
 
@@ -281,7 +261,7 @@ class QuillEditor extends React.Component {
             console.log(file);
             formData.append("file", file);
             console.log(formData);
-            axios.post('/uploadfiles', formData, config)
+            axios.post('https://hex-blog-backend.herokuapp.com/api/blog/uploadfiles', formData, config)
                 .then(response => {
                     if (response.data.success) {
 
@@ -293,7 +273,7 @@ class QuillEditor extends React.Component {
 
                         //먼저 노드 서버에다가 이미지를 넣은 다음에   여기 아래에 src에다가 그걸 넣으면 그게 
                         //이미지 블롯으로 가서  크리에이트가 이미지를 형성 하며 그걸 발류에서     src 랑 alt 를 가져간후에  editorHTML에 다가 넣는다.
-                        quill.insertEmbed(position, "image", { src: "http://localhost:5000/" + response.data.url, alt: response.data.fileName });
+                        quill.insertEmbed(position, "image", { src: "https://hex-blog-backend.herokuapp.com/" + response.data.url, alt: response.data.fileName });
                         quill.setSelection(position + 1);
 
                         if (this._isMounted) {
@@ -336,6 +316,7 @@ class QuillEditor extends React.Component {
                     formats={this.formats}
                     value={this.state.editorHtml}
                     placeholder={this.props.placeholder}
+                    style={{color:'black'}}
                 />
                 <input type="file" accept="image/*" ref={this.inputOpenImageRef} style={{ display: "none" }} onChange={this.insertImage} />
             </div>
