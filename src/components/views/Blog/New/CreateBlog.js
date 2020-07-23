@@ -13,7 +13,7 @@ export default function CreateBlog() {
     }
 
     const onFilesChange = (files) => {
-        setFiles(files)
+        setFiles(files);
     }
     
     const onSubmit = (event) =>{
@@ -22,7 +22,8 @@ export default function CreateBlog() {
 
         const variables ={
             content: content,
-            userID: "111"//user.userData._id
+            userID: "111",//user.userData._id
+            files: files,
         }
 
         // axios.post('/api/blog/createPost',variables).
