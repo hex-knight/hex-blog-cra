@@ -25,6 +25,7 @@ export default function CreateBlog() {
 
         const variables ={
             content: content,
+            files:files,
             userID: "5f12094020766e2f64c80e36"
         }
         console.log("URL: ",apiUrl);
