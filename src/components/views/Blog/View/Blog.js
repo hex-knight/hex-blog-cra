@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+//import React, { useEffect, useState } from 'react';
 import React from 'react';
 //import axios from 'axios';
-import { Card, Typography, Row } from 'antd';
+import { Typography } from 'antd';
 
 const { Title } = Typography
 //const { Meta } = Card;
