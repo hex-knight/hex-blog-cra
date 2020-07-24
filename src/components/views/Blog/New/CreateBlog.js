@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
-import { Typography, Button, Form } from 'antd';
+import { Typography, Button, Form, message} from 'antd';
 import QuillEditor from '../../../editor/QuillEditor';
-//import axios from 'axios';
+import axios from 'axios';
 const { Title } = Typography;
 
 export default function CreateBlog() {
     const [content, setContent] = useState("");
     const [files, setFiles] = useState([]);
+    const apiUrl= process.env.NODE_ENV == 'production' ?
+            "https://hex-blog-backend.herokuapp.com/":
+            "http://localhost:5000/";
 
     const onEditorChange = (value) => {
         setContent(value);
@@ -22,15 +25,22 @@ export default function CreateBlog() {
 
         const variables ={
             content: content,
-            userID: "111",//user.userData._id
-            files: files,
+            userID: "5f12094020766e2f64c80e36"
         }
+        console.log("URL: ",apiUrl);
 
-        // axios.post('/api/blog/createPost',variables).
-        // then( response => {
-        //     console.log(response);
-        // });
-        console.log("Datos: ",variables);
+
+        axios.post(apiUrl+'api/blog/createPost', variables)
+            .then(response => {
+                console.log(response);
+                if (response) {
+                    message.success('Post Created!');
+
+                    setTimeout(() => {
+                        window.location="/";
+                    }, 2000);
+                }
+            })
     }
 
 

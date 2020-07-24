@@ -204,8 +204,8 @@ class QuillEditor extends React.Component {
             editorHtml: __ISMSIE__ ? "<p>&nbsp;</p>" : "",
             files: [],
             apiUrl: process.env.NODE_ENV == 'production' ?
-            "https://hex-blog-backend.herokuapp.com/":
-            "http://localhost:5000/"
+                "https://hex-blog-backend.herokuapp.com/" :
+                "http://localhost:5000/"
         };
 
         this.reactQuillRef = null;
@@ -265,7 +265,7 @@ class QuillEditor extends React.Component {
             console.log(file);
             formData.append("file", file);
             console.log(formData);
-            axios.post(this.state.apiUrl+'api/blog/uploadfiles', formData, config)
+            axios.post(this.state.apiUrl + 'api/blog/uploadfiles', formData, config)
                 .then(response => {
                     if (response.data.success) {
 
@@ -291,26 +291,39 @@ class QuillEditor extends React.Component {
                 })
         }
     };
-
     render() {
         return (
             <div>
                 <div id="toolbar">
-                    <select className="ql-header" defaultValue={""} onChange={e => e.persist()}>
-                        <option value="1" />
-                        <option value="2" />
-                        <option value="" />
+                    <select class="ql-size"
+                        defaultValue={""}
+                        onChange={e => e.persist()}
+                    >
+                        <option value="small"></option>
+                        <option selected></option>
+                        <option value="large">Header 2</option>
+                        <option value="huge">Header 1</option>
                     </select>
                     <button className="ql-bold" />
                     <button className="ql-italic" />
                     <button className="ql-underline" />
                     <button className="ql-strike" />
-                    <button className="ql-image"/>
+                    <button className="ql-image" />
                     <button className="ql-link" />
                     <button className="ql-code-block" />
                     <button className="ql-video" />
                     <button className="ql-blockquote" />
                     <button className="ql-clean" />
+                    <select class="ql-align"
+                        defaultValue={""}
+                        onChange={e => e.persist()}
+                    >
+                        <option selected></option>
+                        <option value="right">Header 2</option>
+                        <option value="center"></option>
+                        <option value="justify">Header 1</option>
+                    </select>
+
                 </div>
                 <ReactQuill
                     ref={(el) => { this.reactQuillRef = el }}
@@ -320,7 +333,7 @@ class QuillEditor extends React.Component {
                     formats={this.formats}
                     value={this.state.editorHtml}
                     placeholder={this.props.placeholder}
-                    style={{color:'black'}}
+                    style={{ color: 'black' }}
                 />
                 <input type="file" accept="image/*" ref={this.inputOpenImageRef} style={{ display: "none" }} onChange={this.insertImage} />
             </div>
@@ -343,7 +356,8 @@ class QuillEditor extends React.Component {
     formats = [
         'header',
         'bold', 'italic', 'underline', 'strike',
-        'image', 'video', 'file', 'link',"code-block", "video", "blockquote", "clean"
+        'image', 'link', "code-block", "video", "blockquote", "clean",
+        'size','align'
     ];
 }
 
