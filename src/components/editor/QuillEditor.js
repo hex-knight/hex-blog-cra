@@ -203,7 +203,7 @@ class QuillEditor extends React.Component {
         this.state = {
             editorHtml: __ISMSIE__ ? "<p>&nbsp;</p>" : "",
             files: [],
-            apiUrl: process.env.NODE_ENV == 'production' ?
+            apiUrl: process.env.NODE_ENV === 'production' ?
                 "https://hex-blog-backend.herokuapp.com/" :
                 "http://localhost:5000/"
         };

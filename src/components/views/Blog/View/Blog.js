@@ -8,7 +8,7 @@ const { Meta } = Card;
 function Blog() {
 
     const [blogs, setBlogs] = useState([])
-    const apiUrl= process.env.NODE_ENV == 'production' ?
+    const apiUrl= process.env.NODE_ENV === 'production' ?
             "https://hex-blog-backend.herokuapp.com/":
             "http://localhost:5000/";
     useEffect(() => {
