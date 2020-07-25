@@ -12,8 +12,7 @@ class NavBar extends Component {
   constructor() {
     super();
     this.state = {
-      name: null,
-      user: null,
+      curUser: null,
       isLoggedIn: false,
       visible: false
     }
@@ -24,12 +23,19 @@ class NavBar extends Component {
   componentWillMount() {
     firebase.auth().onAuthStateChanged(user => {
       if(user){
+        console.log(user);
         const name = user.displayName;
         const index = name.toString().indexOf(' ');
         const firstName = name.toString().substring(0,index);
-        this.setState({name: firstName});
+        this.setState({ curUser: {
+          id: user.uid,
+          name:firstName,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          email: user.email
+        }});
+        this.setState({isLoggedIn:true});
       }
-      this.setState({ user });
     })
   }
 
@@ -49,7 +55,16 @@ class NavBar extends Component {
   handleLogout() {
     firebase.auth().signOut()
       .then(result => {
-        console.log(`${this.state.user.email} ha salido`)
+        this.setState({isLoggedIn:false});
+        console.log(window.location);
+        if(window.location.pathname==="/blog/new")
+        {
+          setTimeout(
+            () => window.location="/",
+            2000
+          );
+        }
+        console.log(`${this.state.curUser.email} ha salido`);
       })//si es correcto, manipulamos el result
       .catch(error => {
         console.log(`${error.code}:${error.message}`)
@@ -58,14 +73,14 @@ class NavBar extends Component {
 
   renderLoginButton() {
     //si está logueado
-    if (this.state.user) {
+    if (this.state.curUser) {
       return (
         <div >
             <p>
-              {this.state.name} 
+              {this.state.curUser.name} 
               <img
-                src={this.state.user.photoURL}
-                alt={this.state.user.displayName}
+                src={this.state.curUser.photoURL}
+                alt={this.state.curUser.displayName}
                 width="30"
                 style={{borderRadius:30}}
               />
@@ -112,7 +127,8 @@ class NavBar extends Component {
       </div>
       <div className="menu__container">
         <div className="menu_left">
-          <LeftMenu mode="horizontal" />
+          <LeftMenu mode="horizontal" 
+          isAuth={this.state.isLoggedIn}/>
         </div>
         <div className="menu_rigth">
         <Menu mode="horizontal">
@@ -120,7 +136,7 @@ class NavBar extends Component {
             {this.renderLoginButton()}
             {/* Login */}
           </Menu.Item>
-          { this.state.user ? (
+          { this.state.curUser ? (
             <Menu.Item key="Logout">
               {this.renderLogoutButton()}
             </Menu.Item>
@@ -157,7 +173,7 @@ class NavBar extends Component {
         </Drawer>
       </div>
     </nav>
-    <Base user={this.state.name} />
+    <Base curUser={this.state.curUser} isAuth={this.state.isLoggedIn} />
     </>
   );}
 }

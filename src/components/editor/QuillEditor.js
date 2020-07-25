@@ -2,6 +2,7 @@ import React from 'react';
 import ReactQuill, { Quill } from 'react-quill';
 import "../../../node_modules/react-quill/dist/quill.snow.css";
 import axios from 'axios';
+import firebase from 'firebase';
 const __ISMSIE__ = navigator.userAgent.match(/Trident/i) ? true : false;
 const QuillClipboard = Quill.import('modules/clipboard');
 
@@ -201,6 +202,8 @@ class QuillEditor extends React.Component {
         super(props);
 
         this.state = {
+            picture: null,
+            uploadValue: 0,
             editorHtml: __ISMSIE__ ? "<p>&nbsp;</p>" : "",
             files: [],
             apiUrl: process.env.NODE_ENV === 'production' ?
@@ -225,11 +228,6 @@ class QuillEditor extends React.Component {
 
     handleChange = (html) => {
         console.log('html', html)
-        // https://youtu.be/BbR-QCoKngE
-        // https://www.youtube.com/embed/ZwKhufmMxko
-        // https://tv.naver.com/v/9176888
-        // renderToStaticMarkup(ReactHtmlParser(html, options));
-
         this.setState({
             editorHtml: html
         }, () => {
@@ -257,38 +255,31 @@ class QuillEditor extends React.Component {
 
         if (e.currentTarget && e.currentTarget.files && e.currentTarget.files.length > 0) {
             const file = e.currentTarget.files[0];
-
-            let formData = new FormData();
-            const config = {
-                header: { 'content-type': 'multipart/form-data' }
-            }
-            console.log(file);
-            formData.append("file", file);
-            console.log(formData);
-            axios.post(this.state.apiUrl + 'api/blog/uploadfiles', formData, config)
-                .then(response => {
-                    if (response.data.success) {
-
+            //firebase upload
+            const storageRef = firebase.storage()
+                .ref(`/BlogPictures/${file.name}`);
+            //after file is uploaded, you can now retrieve it
+            const task = storageRef.put(file).then(
+                () => {
+                    storageRef.getDownloadURL().then(url => {
                         const quill = this.reactQuillRef.getEditor();
                         quill.focus();
-
                         let range = quill.getSelection();
                         let position = range ? range.index : 0;
-
-                        //먼저 노드 서버에다가 이미지를 넣은 다음에   여기 아래에 src에다가 그걸 넣으면 그게 
-                        //이미지 블롯으로 가서  크리에이트가 이미지를 형성 하며 그걸 발류에서     src 랑 alt 를 가져간후에  editorHTML에 다가 넣는다.
-                        quill.insertEmbed(position, "image", { src: this.state.apiUrl + response.data.url, alt: response.data.fileName });
+                        quill.insertEmbed(position, "image", { src: url, alt: file.name });
                         quill.setSelection(position + 1);
-
                         if (this._isMounted) {
                             this.setState({
                                 files: [...this.state.files, file]
                             }, () => { this.props.onFilesChange(this.state.files) });
                         }
-                    } else {
-                        return alert('failed to upload file')
+                    })
+                }).catch(
+                    error => {
+                        console.log(error.error)
                     }
-                })
+                );
+        console.log(task);
         }
     };
     render() {
@@ -336,6 +327,21 @@ class QuillEditor extends React.Component {
                     style={{ color: 'black' }}
                 />
                 <input type="file" accept="image/*" ref={this.inputOpenImageRef} style={{ display: "none" }} onChange={this.insertImage} />
+                <h6>
+                    To do:
+                    <li>
+                        Add an optional cover for the entry
+                    </li>
+                    <li>
+                        Add size control to the images
+                        </li>
+                    <li>
+                        Add delete control for images
+                        </li>
+                    <li>
+                        Add tag adder to the form
+                        </li>
+                </h6>
             </div>
         )
     }
@@ -357,7 +363,7 @@ class QuillEditor extends React.Component {
         'header',
         'bold', 'italic', 'underline', 'strike',
         'image', 'link', "code-block", "video", "blockquote", "clean",
-        'size','align'
+        'size', 'align'
     ];
 }
 

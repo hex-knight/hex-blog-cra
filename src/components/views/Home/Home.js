@@ -29,8 +29,8 @@ export default class Home extends Component {
               </h4>
               <h5>
                 Bienvenido {
-                  this.state.user ? 
-                  this.state.user.displayName : null
+                  this.props.curUser ? 
+                  this.props.curUser.displayName : null
                 }
               </h5>
       </div>

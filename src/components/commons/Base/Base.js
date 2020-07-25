@@ -5,26 +5,9 @@ import Blog from '../../views/Blog/View/Blog';
 import Home from '../../views/Home/Home';
 
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import { Button } from 'antd';
 
 export default class Base extends Component {
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-             user:null
-        }
-    }
-    componentDidMount(){
-        console.log(this.props);
-        if(this.props.user){
-            this.getUser();
-        }
-    }
-
-    getUser(){
-        this.setState({user:this.props.user})
-    }
-    
 
     render() {
         return (
@@ -33,9 +16,28 @@ export default class Base extends Component {
         <header className="App-header">
             <Router>
             <div>
-          <Route exact path="/"component={Home} user={this.state.user}/>
-          <Route exact path="/blog/new" component={CreateBlog} />
-          <Route path="/blogs" component={Blog} />
+          <Route exact path="/">
+              <Home curUser={this.props.curUser} />
+          </Route>
+          <Route exact path="/blog/new">
+          {
+              this.props.isAuth ? (
+                    <CreateBlog curUser={this.props.curUser} />
+              ): <div>
+              <h4>
+                  Acceso denegado
+                </h4>
+                <Button onClick={
+                    () => window.location="/"
+                }>
+                    Volver al inicio
+                </Button>
+                </div>
+          }
+           </Route>
+          <Route path="/blogs">
+              <Blog curUser={this.props.curUser} />
+          </Route>
           
           </div>
           </Router>
