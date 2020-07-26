@@ -1,0 +1,28 @@
+.avatar-uploader > .ant-upload {
+    width: 128px;
+    height: 128px;
+  }
+
+  .title-cover {
+    min-width: 40vmin;
+    width: 80vmin;
+    max-width: 85vmin;
+    display: flex;
+  }
+  
+  .title-cover .ipt{
+    flex:9;
+    margin-top: 4vmin;
+  }
+  
+  
+  .title-cover > .upd{
+    flex:1;
+    align-self: flex-end;
+    margin-left: 10px;
+  }
+
+.tags-cat {
+  display: flex;
+}
+  

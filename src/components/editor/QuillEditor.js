@@ -3,9 +3,12 @@ import ReactQuill, { Quill } from 'react-quill';
 import "../../../node_modules/react-quill/dist/quill.snow.css";
 import axios from 'axios';
 import firebase from 'firebase';
+import './QuillEditor.css';
+import ImageResize from 'quill-image-resize';
+Quill.register('modules/ImageResize', ImageResize);
 const __ISMSIE__ = navigator.userAgent.match(/Trident/i) ? true : false;
-const QuillClipboard = Quill.import('modules/clipboard');
 
+const QuillClipboard = Quill.import('modules/clipboard');
 
 
 class Clipboard extends QuillClipboard {
@@ -284,7 +287,7 @@ class QuillEditor extends React.Component {
     };
     render() {
         return (
-            <div>
+            <div className="container">
                 <div id="toolbar">
                     <select class="ql-size"
                         defaultValue={""}
@@ -324,33 +327,41 @@ class QuillEditor extends React.Component {
                     formats={this.formats}
                     value={this.state.editorHtml}
                     placeholder={this.props.placeholder}
-                    style={{ color: 'black' }}
+                    style={{ color: 'black'}}
                 />
-                <input type="file" accept="image/*" ref={this.inputOpenImageRef} style={{ display: "none" }} onChange={this.insertImage} />
-                <h6>
-                    To do:
-                    <li>
-                        Add an optional cover for the entry
-                    </li>
-                    <li>
-                        Add size control to the images
-                        </li>
-                    <li>
-                        Add delete control for images
-                        </li>
-                    <li>
-                        Add tag adder to the form
-                        </li>
-                </h6>
+                <input type="file" accept="image/*" 
+                ref={this.inputOpenImageRef} 
+                style={{ display: "none" }} 
+                onChange={this.insertImage} />
             </div>
         )
     }
 
     modules = {
-        //syntax: true,
+        ImageResize:{
+            modules: [ 'Resize', 'DisplaySize', 'Toolbar' ],
+            handleStyles: {
+                backgroundColor: 'black',
+                border: 'none',
+                color: 'white'
+            },
+            displayStyles: {
+                backgroundColor: 'black',
+                border: 'none',
+                color: 'white'
+                // other camelCase styles for size display
+            },
+            toolbarStyles: {
+                backgroundColor: 'black',
+                border: 'none',
+                color: 'white'
+                // other camelCase styles for size display
+            }
+
+
+        },
         toolbar: {
             container: "#toolbar",
-            //id ="toorbar"는  그 위에 B I U S I V F P 이거 있는 곳이다. 
             handlers: {
                 image: this.imageHandler,
                 insertPoll: this.pollHandler,

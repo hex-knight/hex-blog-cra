@@ -5,7 +5,7 @@ import Blog from '../../views/Blog/View/Blog';
 import Home from '../../views/Home/Home';
 
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import { Button } from 'antd';
+//import { Button } from 'antd';
 
 export default class Base extends Component {
 
@@ -22,17 +22,9 @@ export default class Base extends Component {
           <Route exact path="/blog/new">
           {
               this.props.isAuth ? (
-                    <CreateBlog curUser={this.props.curUser} />
-              ): <div>
-              <h4>
-                  Acceso denegado
-                </h4>
-                <Button onClick={
-                    () => window.location="/"
-                }>
-                    Volver al inicio
-                </Button>
-                </div>
+                    <CreateBlog curUser={this.props.curUser} 
+                    isAuth={this.props.isAuth}/>
+              ): null
           }
            </Route>
           <Route path="/blogs">

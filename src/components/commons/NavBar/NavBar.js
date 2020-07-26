@@ -23,7 +23,6 @@ class NavBar extends Component {
   componentWillMount() {
     firebase.auth().onAuthStateChanged(user => {
       if(user){
-        console.log(user);
         const name = user.displayName;
         const index = name.toString().indexOf(' ');
         const firstName = name.toString().substring(0,index);
@@ -158,7 +157,9 @@ class NavBar extends Component {
           onClose={() => this.onClose()}
           visible={this.state.visible}
         >
-          <LeftMenu mode="inline" />
+          <LeftMenu mode="inline" 
+          isAuth={this.state.isLoggedIn}/>
+          
           <Menu mode="inline">
           <Menu.Item key="Login">
             {this.renderLoginButton()}
