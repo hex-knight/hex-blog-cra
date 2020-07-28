@@ -77,7 +77,7 @@ export default function CreateBlog(props) {
     //-----Validate if the form can be saved 
     const validateForm = () =>{
         console.log(tags);
-        if((content!=''&&content!='<p><br></p>')&&tags.length!=0){
+        if((content!==''&&content!=='<p><br></p>')&&tags.length!==0){
             onSubmit();
         }
         else{
@@ -123,6 +123,7 @@ export default function CreateBlog(props) {
                         });
                     return;
                 })
+                console.log(task);
             }).catch(
                 error => {
                     message.error('Ocurrió un error al subir la portada');
@@ -153,6 +154,7 @@ export default function CreateBlog(props) {
                     );
                 }
             });
+        
     }
     //
     //--------Tags Functions

@@ -5,8 +5,6 @@ import Meta from 'antd/lib/card/Meta';
 import './Blog.css';
 import logo from '../../../../hex.png';
 
-const { Title } = Typography
-
 class Blog extends Component {
     constructor(props) {
         super(props)
@@ -40,9 +38,9 @@ class Blog extends Component {
                         (<img alt="Cover" src={blog.cover} />):
                         (<img src={logo} className="no-cover"/>)}
                         className="card"
-                        extra={index==0?"Nuevo!":null}
+                        extra={index===0?"Nuevo!":null}
                     >
-                        {blog.titulo != '' ? (
+                        {blog.titulo !== '' ? (
                             <Meta
                                 title={blog.titulo}
                                 description={blog.fecha}
