@@ -23,6 +23,18 @@
   }
 
 .tags-cat {
-  display: flex;
+  min-width: 40vmin;
+  width: 80vmin;
+  max-width: 85vmin;
+  display: flex;  
 }
-  
+
+
+
+.tags-cat .tag {
+  flex: 15;
+  min-width: 35vmin;
+  width: 60vmin;
+  max-width: 62.5;
+}
+

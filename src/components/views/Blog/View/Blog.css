@@ -1,0 +1,30 @@
+.no-cover {
+    height: 100%;
+    pointer-events: none;
+    padding-bottom: 5px;   
+}
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .no-cover {
+      animation: no-cover-spin infinite 120s linear;
+    }
+  }
+  
+  @keyframes no-cover-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .card {
+    box-shadow: 0 0 10px rgb(194, 194, 194);
+    
+    border-radius: 5;
+  }
+
+  .meta {
+      background-color: transparent;
+  }

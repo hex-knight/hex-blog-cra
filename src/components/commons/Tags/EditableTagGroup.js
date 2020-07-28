@@ -17,6 +17,7 @@ class EditableTagGroup extends Component {
   handleClose = removedTag => {
     const tags = this.state.tags.filter(tag => tag !== removedTag);
     this.setState({ tags });
+    this.props.onTagsChange(tags);
   };
 
   showInput = () => {
@@ -70,6 +71,23 @@ class EditableTagGroup extends Component {
     const { tags, inputVisible, inputValue, editInputIndex, editInputValue } = this.state;
     return (
       <>
+      {inputVisible && (
+          <Input
+            ref={this.saveInputRef}
+            type="text"
+            size="small"
+            className="tag-input"
+            value={inputValue}
+            onChange={this.handleInputChange}
+            onBlur={this.handleInputConfirm}
+            onPressEnter={this.handleInputConfirm}
+          />
+        )}
+        {!inputVisible && (
+          <Tag className="site-tag-plus" onClick={this.showInput}>
+            <PlusOutlined /> Etiquetas
+          </Tag>
+        )}
         {tags.map((tag, index) => {
           if (editInputIndex === index) {
             return (
@@ -115,23 +133,7 @@ class EditableTagGroup extends Component {
             tagElem
           );
         })}
-        {inputVisible && (
-          <Input
-            ref={this.saveInputRef}
-            type="text"
-            size="small"
-            className="tag-input"
-            value={inputValue}
-            onChange={this.handleInputChange}
-            onBlur={this.handleInputConfirm}
-            onPressEnter={this.handleInputConfirm}
-          />
-        )}
-        {!inputVisible && (
-          <Tag className="site-tag-plus" onClick={this.showInput}>
-            <PlusOutlined /> Etiquetas
-          </Tag>
-        )}
+        
       </>
     );
   }
