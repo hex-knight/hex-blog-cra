@@ -1,6 +1,6 @@
 import React, {  Component } from 'react';
 import firebase from 'firebase';
-import { Typography, Col, Card, Row } from 'antd';
+import { Col, Card, Row } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import './Blog.css';
 import logo from '../../../../hex.png';
@@ -34,9 +34,9 @@ class Blog extends Component {
                         style={{ width: 370, margin:15, 
                             alignSelf:'center'}}
                         bordered={false}
-                        cover={blog.cover!=''?
+                        cover={blog.cover!==''?
                         (<img alt="Cover" src={blog.cover} />):
-                        (<img src={logo} className="no-cover"/>)}
+                        (<img src={logo} alt="Sin portada" className="no-cover"/>)}
                         className="card"
                         extra={index===0?"Nuevo!":null}
                     >

@@ -33,6 +33,24 @@ export default class Home extends Component {
                   this.props.curUser.displayName : null
                 }
               </h5>
+              <h6>
+                Por hacer:
+                <li>
+                  Página de blog por id
+                </li>
+                <li>
+                  Ideas para la homepage???Convertir index en homepage?
+                </li>
+                <li>
+                  Research buscador
+                </li>
+                <li>
+                  Hacer banco de Tags
+                </li>
+                <li>
+                  Research comentarios ? reacciones ? sin interacción
+                </li>
+              </h6>
       </div>
         )
     }
