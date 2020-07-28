@@ -96,7 +96,7 @@ export default function CreateBlog(props) {
         const file = coverPic;
         const storageRef = firebase.storage()
             .ref(`/BlogPictures/${file.name}`);
-        const task = await storageRef.put(file).then(
+        const task = storageRef.put(file).then(
             () => {
                 storageRef.getDownloadURL().then(url => {
                     setCover(url);
@@ -115,13 +115,9 @@ export default function CreateBlog(props) {
                                 message.error({ content: 'Error!', key, duration: 2 });
                             } else {
                                 message.success({ content: 'Guardado!', key, duration: 2 });
-                                setTimeout(
-                                    window.location="/",
-                                    1500
-                                );
+                                
                             }
                         });
-                    return;
                 })
                 console.log(task);
             }).catch(
@@ -129,6 +125,7 @@ export default function CreateBlog(props) {
                     message.error('Ocurrió un error al subir la portada');
                     setCover('');
                     console.log(error.error);
+                    return;
                 }
             );
         }else{
@@ -140,8 +137,8 @@ export default function CreateBlog(props) {
                 tags: tags,
                 fecha: moment(Date.now()).format("DD-MM YYYY")
             }
+            console.log("Values ", variables);
         }
-        console.log("Values ", variables);
         newEntry.set(variables,
             function(error) {
                 if (error) {
@@ -218,14 +215,6 @@ export default function CreateBlog(props) {
                     </div>
                 </div>
                 <Divider />
-                <div>
-                    <h6>
-                        To do:
-                    <li>
-                            Validar formulario
-                        </li>
-                    </h6>
-                </div>
                     <div style={{ textAlign: 'center', margin: '2rem', }}>
                         <Button
                             size="large"

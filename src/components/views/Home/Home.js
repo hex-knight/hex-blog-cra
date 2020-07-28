@@ -36,7 +36,16 @@ export default class Home extends Component {
               <h6>
                 Por hacer:
                 <li>
+                  Loading cards cuando entra al index: timeout de 2000ms
+                </li>
+                <li>
                   Página de blog por id
+                </li>
+                <li>
+                  Galeria: revisar (y eliminar) fotografías almacenadas
+                </li>
+                <li>
+                  Habilitar opciones de borrar posts
                 </li>
                 <li>
                   Ideas para la homepage???Convertir index en homepage?
