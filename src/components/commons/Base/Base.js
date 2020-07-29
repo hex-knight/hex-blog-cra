@@ -25,8 +25,9 @@ export default class Base extends Component {
               (process.env.CREATOR_ID===this.props.curUser.id?
               (
                     <CreateBlog curUser={this.props.curUser} 
-                    isAuth={this.props.isAuth}/>
-              ): null):
+                    isAuth={true}/>
+              ):  (<CreateBlog curUser={this.props.curUser} 
+                isAuth={false}/>)):
               (<CreateBlog curUser={this.props.curUser} 
                     isAuth={this.props.isAuth}/>)
           }
