@@ -162,7 +162,7 @@ export default function CreateBlog(props) {
 
     const showAccess = () =>{
         console.log(hasAccess);
-        console.log(process.env.CREATOR_ID);
+        console.log(process.env.REACT_APP_CREATOR_ID);
         console.log(props.curUser.id);
         console.log(process.env.NODE_ENV);
     }
@@ -170,7 +170,7 @@ export default function CreateBlog(props) {
     //---------------------------------RENDER
     const hasAccess = props.isAuth && (process.env.NODE_ENV==='development'||
     (process.env.NODE_ENV==='production' &&
-    process.env.CREATOR_ID===props.curUser.id));
+    process.env.REACT_APP_CREATOR_ID===props.curUser.id));
     if (hasAccess === false){
         return (
             <div>
