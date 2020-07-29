@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Home.css';
-import * as config from '../../../secrets/key';
 
 export default class Home extends Component {
   constructor(props) {
@@ -11,7 +10,6 @@ export default class Home extends Component {
     }
   }
   componentDidMount(){
-    console.log(config.key);
     if(this.props.user){
       this.getUser();
     }

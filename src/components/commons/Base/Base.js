@@ -21,10 +21,14 @@ export default class Base extends Component {
           </Route>
           <Route exact path="/blog/new">
           {
-              this.props.isAuth ? (
+              process.env.NODE_ENV==='production'?
+              (process.env.CREATOR_ID===this.props.curUser.id?
+              (
                     <CreateBlog curUser={this.props.curUser} 
                     isAuth={this.props.isAuth}/>
-              ): null
+              ): null):
+              (<CreateBlog curUser={this.props.curUser} 
+                    isAuth={this.props.isAuth}/>)
           }
            </Route>
           <Route path="/blogs">
