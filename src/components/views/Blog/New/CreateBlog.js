@@ -14,7 +14,8 @@ import ImgCrop from 'antd-img-crop';
 import firebase from 'firebase';
 import moment from 'moment';
 const { Title } = Typography;
-moment.locale('es');
+
+
 
 function beforeUpload(file) {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
@@ -160,7 +161,24 @@ export default function CreateBlog(props) {
     }
     //
     //---------------------------------RENDER
-    if (props.isAuth) {
+    const hasAccess = props.isAuth && (process.env.NODE_ENV==='development'||
+    (process.env.NODE_ENV==='production' &&
+    process.env.CREATOR_ID===props.curUser.id));
+    if (!hasAccess){
+        return (
+            <div>
+                <h4>
+                    Acceso denegado
+                </h4>
+                <Button onClick={
+                    () => window.location = "/"
+                }>
+                    Volver al inicio
+                </Button>
+            </div>
+        )
+    }
+    else{
         return (
             <div style={{ maxWidth: '1500px', margin: '2rem auto' }}>
                 <div style={{ textAlign: 'center' }}>
@@ -225,19 +243,6 @@ export default function CreateBlog(props) {
                             Publicar
                 </Button>
                     </div>
-            </div>
-        )
-    } else {
-        return (
-            <div>
-                <h4>
-                    Acceso denegado
-                </h4>
-                <Button onClick={
-                    () => window.location = "/"
-                }>
-                    Volver al inicio
-                </Button>
             </div>
         )
     }

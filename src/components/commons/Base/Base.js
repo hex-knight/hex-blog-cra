@@ -5,6 +5,7 @@ import Blog from '../../views/Blog/View/Blog';
 import Home from '../../views/Home/Home';
 
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import { Button } from 'antd';
 //import { Button } from 'antd';
 
 export default class Base extends Component {
@@ -21,15 +22,19 @@ export default class Base extends Component {
           </Route>
           <Route exact path="/blog/new">
           {
-              process.env.NODE_ENV==='production'?
-              (process.env.CREATOR_ID===this.props.curUser.id?
-              (
+              this.props.isAuth ? (
                     <CreateBlog curUser={this.props.curUser} 
-                    isAuth={true}/>
-              ):  (<CreateBlog curUser={this.props.curUser} 
-                isAuth={false}/>)):
-              (<CreateBlog curUser={this.props.curUser} 
-                    isAuth={this.props.isAuth}/>)
+                    isAuth={this.props.isAuth}/>
+              ): (<div>
+                <h4>
+                    Acceso denegado
+                </h4>
+                <Button onClick={
+                    () => window.location = "/"
+                }>
+                    Volver al inicio
+                </Button>
+            </div>)
           }
            </Route>
           <Route path="/blogs">
