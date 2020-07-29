@@ -9,6 +9,9 @@ import { Button } from 'antd';
 //import { Button } from 'antd';
 
 export default class Base extends Component {
+    hasAccess = this.props.isAuth && (process.env.NODE_ENV==='development'||
+    (process.env.NODE_ENV==='production' &&
+    process.env.CREATOR_ID===this.props.curUser.id));
 
     render() {
         return (

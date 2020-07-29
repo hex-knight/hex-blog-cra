@@ -159,12 +159,16 @@ export default function CreateBlog(props) {
     const onTagsChange = (tags) => {
         setTags(tags);
     }
+
+    const showAccess = () =>{
+        console.log(hasAccess);
+    }
     //
     //---------------------------------RENDER
     const hasAccess = props.isAuth && (process.env.NODE_ENV==='development'||
     (process.env.NODE_ENV==='production' &&
     process.env.CREATOR_ID===props.curUser.id));
-    if (!hasAccess){
+    if (hasAccess === false){
         return (
             <div>
                 <h4>
@@ -174,6 +178,11 @@ export default function CreateBlog(props) {
                     () => window.location = "/"
                 }>
                     Volver al inicio
+                </Button>
+                <Button onClick={
+                    showAccess
+                }>
+                    Acceso
                 </Button>
             </div>
         )
@@ -241,6 +250,11 @@ export default function CreateBlog(props) {
                             onClick={validateForm}
                         >
                             Publicar
+                </Button>
+                <Button onClick={
+                    showAccess
+                }>
+                    Acceso
                 </Button>
                     </div>
             </div>

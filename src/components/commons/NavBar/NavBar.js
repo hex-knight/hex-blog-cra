@@ -72,7 +72,7 @@ class NavBar extends Component {
 
   renderLoginButton() {
     //si está logueado
-    if (this.state.curUser) {
+    if (this.state.isLoggedIn) {
       return (
         <div >
             <p>
