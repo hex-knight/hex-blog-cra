@@ -162,6 +162,9 @@ export default function CreateBlog(props) {
 
     const showAccess = () =>{
         console.log(hasAccess);
+        console.log(process.env.CREATOR_ID);
+        console.log(props.curUser.id);
+        console.log(process.env.NODE_ENV);
     }
     //
     //---------------------------------RENDER
