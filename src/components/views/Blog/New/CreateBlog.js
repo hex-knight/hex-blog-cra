@@ -159,13 +159,6 @@ export default function CreateBlog(props) {
     const onTagsChange = (tags) => {
         setTags(tags);
     }
-
-    const showAccess = () =>{
-        console.log(hasAccess);
-        console.log(process.env.REACT_APP_CREATOR_ID);
-        console.log(props.curUser.id);
-        console.log(process.env.NODE_ENV);
-    }
     //
     //---------------------------------RENDER
     const hasAccess = props.isAuth && (process.env.NODE_ENV==='development'||
@@ -181,11 +174,6 @@ export default function CreateBlog(props) {
                     () => window.location = "/"
                 }>
                     Volver al inicio
-                </Button>
-                <Button onClick={
-                    showAccess
-                }>
-                    Acceso
                 </Button>
             </div>
         )
@@ -253,11 +241,6 @@ export default function CreateBlog(props) {
                             onClick={validateForm}
                         >
                             Publicar
-                </Button>
-                <Button onClick={
-                    showAccess
-                }>
-                    Acceso
                 </Button>
                     </div>
             </div>
