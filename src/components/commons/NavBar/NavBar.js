@@ -159,7 +159,8 @@ class NavBar extends Component {
           visible={this.state.visible}
         >
           <LeftMenu mode="inline" 
-          isAuth={this.state.isLoggedIn}/>
+          isAuth={this.state.isLoggedIn}
+          curUser={this.state.curUser}/>
           
           <Menu mode="inline">
           <Menu.Item key="Login">
