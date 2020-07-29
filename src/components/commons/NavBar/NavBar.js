@@ -128,6 +128,7 @@ class NavBar extends Component {
       <div className="menu__container">
         <div className="menu_left">
           <LeftMenu mode="horizontal" 
+          curUser={this.state.curUser}
           isAuth={this.state.isLoggedIn}/>
         </div>
         <div className="menu_rigth">
