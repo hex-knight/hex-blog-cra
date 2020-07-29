@@ -55,6 +55,7 @@ class NavBar extends Component {
     firebase.auth().signOut()
       .then(result => {
         this.setState({isLoggedIn:false});
+        this.setState({curUser: null});
         console.log(window.location);
         if(window.location.pathname==="/blog/new")
         {
@@ -135,7 +136,7 @@ class NavBar extends Component {
             {this.renderLoginButton()}
             {/* Login */}
           </Menu.Item>
-          { this.state.curUser ? (
+          { this.state.isLoggedIn ? (
             <Menu.Item key="Logout">
               {this.renderLogoutButton()}
             </Menu.Item>
@@ -165,7 +166,7 @@ class NavBar extends Component {
             {this.renderLoginButton()}
             {/* Login */}
           </Menu.Item>
-          { this.state.user ? (
+          { this.state.isLoggedIn ? (
             <Menu.Item key="Logout">
               {this.renderLogoutButton()}
             </Menu.Item>
