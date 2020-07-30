@@ -69,6 +69,29 @@ input.error {
   max-width: max-content;
 }
 
+ @media only screen 
+ and (orientation:landscape){
+div.postPage {
+  width: 60%;
+  margin: auto;  
+  padding: 2%;
+  box-shadow: 0 0 20px 10px rgb(228, 227, 227);
+  
+  border-radius: 15px;
+}
+}
+
+@media only screen 
+and (orientation:portrait){
+div.postPage {
+ width: 90%;
+ margin: auto;  
+ padding: 2%;
+ box-shadow: 0 0 30px 10px rgb(238, 238, 238);
+ border-radius: 15px;
+}
+}
+
 
 
 .ql-editor img {
@@ -111,7 +134,7 @@ width: 80vmin;
 height: 45vmin;
 margin: auto;
 text-align: center;
-box-shadow: 0 0 3px rgb(231, 9, 9);
+box-shadow: 0 0 3px rgb(0, 0, 0);
 }
 }
 
