@@ -42,15 +42,24 @@ export default function CreateBlog(props) {
     //
     //--------Cover Functions
     const handleChange = (info) => {
+        //console.log(info);
         const file = info.file.originFileObj;
+        console.log(file);
         setCoverPic(file);
         setLoading(true);
+        console.log("BeforeUploading",coverPic);
+        //console.log(URL.createObjectURL(coverPic));
+        const url=URL.createObjectURL(file);
+        console.log(url);
+        setCover(url);
+        console.log("Uploaded:",cover);
+        setLoading(false);
         setTimeout(
             () => {
-                setCover(URL.createObjectURL(file));
+                
                 setLoading(false);
             },
-            1000
+            2000
         )
 
     }
@@ -77,7 +86,6 @@ export default function CreateBlog(props) {
     //
     //-----Validate if the form can be saved 
     const validateForm = () =>{
-        console.log(tags);
         if((content!==''&&content!=='<p><br></p>')&&tags.length!==0){
             onSubmit();
         }
@@ -88,9 +96,11 @@ export default function CreateBlog(props) {
     //
     //-------Submit Functions
     async function onSubmit(event){
+        console.log("submit");
         const key = 'updatable';
         let variables = {};
         message.loading({ content: 'Loading...', key });
+        console.log(cover);
         const dbRef = firebase.database().ref('Blogs');
         const newEntry = dbRef.push();
         if(cover){
@@ -105,20 +115,20 @@ export default function CreateBlog(props) {
                         cover: url,
                         contenido: content,
                         userId: props.curUser.id,
-                        titulo: title,
+                        titulo: title===''?moment(Date.now()).format("DD-MM YYYY"):title,
                         tags: tags,
                         fecha: moment(Date.now()).format("DD-MM YYYY")
                     }
                     console.log("Values: ",variables);
-                    newEntry.set(variables,
-                        function(error) {
-                            if (error) {
-                                message.error({ content: 'Error!', key, duration: 2 });
-                            } else {
-                                message.success({ content: 'Guardado!', key, duration: 2 });
+                    // newEntry.set(variables,
+                    //     function(error) {
+                    //         if (error) {
+                    //             message.error({ content: 'Error!', key, duration: 2 });
+                    //         } else {
+                    //             message.success({ content: 'Guardado!', key, duration: 2 });
                                 
-                            }
-                        });
+                    //         }
+                    //     });
                 })
                 console.log(task);
             }).catch(
@@ -134,24 +144,28 @@ export default function CreateBlog(props) {
                 cover: '',
                 contenido: content,
                 userId: props.curUser.id,
-                titulo: title,
+                titulo: title===''?moment(Date.now()).format("DD-MM YYYY"):title,
                 tags: tags,
                 fecha: moment(Date.now()).format("DD-MM YYYY")
             }
             console.log("Values ", variables);
         }
-        newEntry.set(variables,
-            function(error) {
-                if (error) {
-                    message.error({ content: 'Error!', key, duration: 2 });
-                } else {
-                    message.success({ content: 'Guardado!', key, duration: 2 });
-                    setTimeout(
-                        window.location="/",
-                        1500
-                    );
-                }
-            });
+        setTimeout(
+            ()=>{
+                newEntry.set(variables,
+                    function(error) {
+                        if (error) {
+                            message.error({ content: 'Error!', key, duration: 2 });
+                        } else {
+                            message.success({ content: 'Guardado!', key, duration: 2 });
+                        }
+                    }).then(
+                        message.success({ content: 'Guardado!', key, duration: 2 })
+                    )
+                window.location="/blogs";
+            },
+            2000
+        );
         
     }
     //
@@ -191,7 +205,7 @@ export default function CreateBlog(props) {
                         <Input placeholder={
                             "Título (opcional)"
                         }
-                            allowClear={"true"}
+                            
                             value={title}
                             style={{
                                 width: '100%',
@@ -225,10 +239,12 @@ export default function CreateBlog(props) {
                 />
                 <Divider />
                 <div className="tags-cat">
-                    <div classname="tag">
+                    <div className="tag">
+                        <div>
                         <h6>
                             Etiquetas
                         </h6>
+                        </div>
                         <EditableTagGroup onTagsChange={onTagsChange} />
                     </div>
                 </div>

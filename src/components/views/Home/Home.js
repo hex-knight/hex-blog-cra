@@ -36,10 +36,22 @@ export default class Home extends Component {
               <h6>
                 Por hacer:
                 <li>
-                  Loading cards cuando entra al index: timeout de 2000ms
+                  Botón de "Regresar" para cada Blog (en el component)
                 </li>
                 <li>
-                  Página de blog por id
+                  Mostrar Tags en cada Blog
+                </li>
+                <li>
+                  POC: filtrar por tag
+                </li>
+                <li>
+                  POC: poder alternar entre GRID y LIST para el Index
+                </li>
+                <li>
+                  Reducir tamaño para pantallas tipo landscape y mantener para portrait
+                </li>
+                <li>
+                  Loading cards cuando entra al index: timeout de 2000ms
                 </li>
                 <li>
                   Galeria: revisar (y eliminar) fotografías almacenadas

@@ -5,7 +5,7 @@ import Meta from 'antd/lib/card/Meta';
 import './Blog.css';
 import logo from '../../../../hex.png';
 
-class Blog extends Component {
+class Blogs extends Component {
     constructor(props) {
         super(props)
 
@@ -17,7 +17,7 @@ class Blog extends Component {
     componentWillMount() {
         var starCountRef = firebase.database().ref('Blogs/');
         starCountRef.on('value', async snapshot => {
-            console.log(snapshot.val());
+            //console.log(Object.getOwnPropertyNames(snapshot.val()));
             if (snapshot.val() == null) {
                 this.setState({
                     cards: (
@@ -25,6 +25,7 @@ class Blog extends Component {
                     )
                 })
             } else {
+                const ids=Object.getOwnPropertyNames(snapshot.val()).reverse();
                 let content = Object.values(snapshot.val()).reverse();
                 console.log(content);
                 const renderBlogs = content.map((blog, index) => {
@@ -32,14 +33,25 @@ class Blog extends Component {
                         <Card
                             hoverable
                             style={{
-                                width: 370, margin: 15,
+                                width: 350, margin: 5,
+                                maxWidth: 350
                             }}
                             bordered={false}
-                            cover={blog.cover !== '' ?
-                                (<img alt="Cover" src={blog.cover} />) :
-                                (<img src={logo} alt="Sin portada" className="no-cover" />)}
+                            cover=
+                            {blog.cover !== '' ?
+                                (<img alt="Cover" src={blog.cover}
+                                onClick={() => window.location=`/blogs/${blog.titulo}/${ids[index]}`}
+                                />) :
+                                (<img src={logo} alt="Sin portada" className="no-cover"
+                                onClick={() => window.location=`/blogs/${blog.titulo}`} 
+                                style={{
+                                    borderRadius:'150%',
+                                    minWidth:350,
+                                    maxWidth:350,
+                                    height:350}}/>)}
                             className="card"
                         >
+                            <a href={`/blogs/${blog.titulo}/${ids[index]}`}>
                             {blog.titulo !== '' ? (
                                 <Meta
                                     
@@ -53,6 +65,7 @@ class Blog extends Component {
                                     description={index===0?"Nuevo!":blog.fecha}
                                 />
                             }
+                            </a>
                         </Card>
                     </Col>
                 });
@@ -79,4 +92,4 @@ class Blog extends Component {
 }
 
 
-export default Blog
+export default Blogs

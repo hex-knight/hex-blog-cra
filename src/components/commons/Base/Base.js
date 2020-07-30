@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 //import { Route } from 'react-router-dom';
 import CreateBlog from '../../views/Blog/New/CreateBlog';
-import Blog from '../../views/Blog/View/Blog';
+import Blogs from '../../views/Blog/View/Blogs';
 import Home from '../../views/Home/Home';
 
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import { Button } from 'antd';
+import Blog from '../../views/Blog/Blog';
 //import { Button } from 'antd';
 
 export default class Base extends Component {
@@ -40,10 +41,12 @@ export default class Base extends Component {
             </div>)
           }
            </Route>
-          <Route path="/blogs">
-              <Blog curUser={this.props.curUser} />
+          <Route exact path="/blogs">
+              <Blogs curUser={this.props.curUser} />
           </Route>
-          
+          <Route exact path="/blogs/:title/:postId" 
+          render={(props) => <Blog {...props} 
+          curUser={this.props.curUser} />}/>
           </div>
           </Router>
         </header>

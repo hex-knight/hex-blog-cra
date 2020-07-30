@@ -1,23 +1,27 @@
 .no-cover {
-    height: 100%;
+    width: 90%;
+    max-width: 300;
+    
     pointer-events: none;
-    padding-bottom: 5px;   
+    padding-bottom: 5px;  
+    margin-left: 1vmin;
+    
 }
   
-  @media (prefers-reduced-motion: no-preference) {
-    .no-cover {
-      animation: no-cover-spin infinite 120s linear;
-    }
+@media (prefers-reduced-motion: no-preference) {
+  .no-cover {
+    animation: no-cover-spin infinite 120s linear;
   }
-  
-  @keyframes no-cover-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+}
+
+@keyframes no-cover-spin {
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
   .card {
     box-shadow: 0 0 10px rgb(194, 194, 194);

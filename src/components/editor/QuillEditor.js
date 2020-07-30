@@ -289,12 +289,12 @@ class QuillEditor extends React.Component {
         return (
             <div className="container">
                 <div id="toolbar">
-                    <select class="ql-size"
-                        defaultValue={""}
+                    <select className="ql-size"
+                        defaultValue={"normal"}
                         onChange={e => e.persist()}
                     >
                         <option value="small"></option>
-                        <option selected></option>
+                        <option value="normal"></option>
                         <option value="large">Header 2</option>
                         <option value="huge">Header 1</option>
                     </select>
@@ -308,14 +308,14 @@ class QuillEditor extends React.Component {
                     <button className="ql-video" />
                     <button className="ql-blockquote" />
                     <button className="ql-clean" />
-                    <select class="ql-align"
+                    <select className="ql-align"
                         defaultValue={""}
                         onChange={e => e.persist()}
                     >
-                        <option selected></option>
-                        <option value="right">Header 2</option>
+                        <option value=""></option>
+                        <option value="right"></option>
                         <option value="center"></option>
-                        <option value="justify">Header 1</option>
+                        <option value="justify"></option>
                     </select>
 
                 </div>
