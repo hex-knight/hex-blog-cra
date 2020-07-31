@@ -4,8 +4,7 @@ import LeftMenu from './Sections/LeftMenu';
 import { Drawer, Button, Icon, Menu } from 'antd';
 import './Sections/Navbar.css';
 import logo from './../../../hex.png';
-import Base from '../Base/Base';
-import firebase from 'firebase';
+
 import { VpnKey, ExitToApp } from '@material-ui/icons/';
 
 class NavBar extends Component {
