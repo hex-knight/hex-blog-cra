@@ -71,6 +71,11 @@ class EditableTagGroup extends Component {
     const { tags, inputVisible, inputValue, editInputIndex, editInputValue } = this.state;
     return (
       <>
+      {!inputVisible && (
+          <Tag className="site-tag-plus" onClick={this.showInput}>
+            <PlusOutlined /> Nueva
+          </Tag>
+        )}
       {inputVisible && (
           <Input
             ref={this.saveInputRef}
@@ -83,11 +88,7 @@ class EditableTagGroup extends Component {
             onPressEnter={this.handleInputConfirm}
           />
         )}
-        {!inputVisible && (
-          <Tag className="site-tag-plus" onClick={this.showInput}>
-            <PlusOutlined /> Etiquetas
-          </Tag>
-        )}
+        
         {tags.map((tag, index) => {
           if (editInputIndex === index) {
             return (

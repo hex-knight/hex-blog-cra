@@ -1,7 +1,57 @@
-.App {
-  text-align: center;
+@media only screen
+and (orientation:landscape){
+  .App {
+    text-align: center;
+    min-height: calc(100vh - 60px);
+    background-color: rgb(219, 219, 219);
+    box-shadow: 0 0 15px 5px rgb(47, 47, 47); 
+  }
+  .cards{
+    padding-top: 80px
+  }
+  .ant-row{
+    margin-left: unset !important;
+    margin-right: unset !important;
+  }
+  .footer{
+    height: 60px;
+    background-color: #282c34;
+    color: #d8d8d8;
+  }
 }
 
+
+@media only screen
+and (orientation:portrait){
+  .App {
+    text-align: center;
+    min-height: calc(100vh - 90px);
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 15px 5px rgb(47, 47, 47); 
+  }
+  .cards{
+    padding-top: 60px;
+  }
+  .ant-row{
+    margin-left: unset !important;
+    margin-right: unset !important;
+  }
+  .footer{
+    height: 40px;
+    background-color: #282c34;
+    color: #d8d8d8;
+  }
+}
+
+.col{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.card{
+  width: 340px;
+  margin: auto;
+}
 
 .button {
   color: cyan;
@@ -23,4 +73,5 @@
 .App-link {
   color: #61dafb;
 }
+
 

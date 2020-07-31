@@ -7,11 +7,8 @@ function LeftMenu(props) {
     process.env.REACT_APP_CREATOR_ID===props.curUser.id));
   return (
     <Menu mode={props.mode}>
-      <Menu.Item key="Home" className="ant-menu-item">
-        <a href="/">Home</a>
-      </Menu.Item>
       <Menu.Item key="Blog">
-        <a href="/blogs">Blogs</a>
+        <a href="/">Blogs</a>
       </Menu.Item>
       {
         hasAccess ? (

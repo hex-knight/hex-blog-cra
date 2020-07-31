@@ -29,13 +29,11 @@ class Blogs extends Component {
                 let content = Object.values(snapshot.val()).reverse();
                 console.log(content);
                 const renderBlogs = content.map((blog, index) => {
-                    return <Col xs={25} md={24} lg={12} xl={8}>
+                    return <Col xs={24} md={12} lg={12} xl={8}
+                    className="col">
                         <Card
+                            className="card"
                             hoverable
-                            style={{
-                                width: 350, margin: 5,
-                                maxWidth: 350
-                            }}
                             bordered={false}
                             cover=
                             {blog.cover !== '' ?
@@ -49,7 +47,6 @@ class Blogs extends Component {
                                     minWidth:350,
                                     maxWidth:350,
                                     height:350}}/>)}
-                            className="card"
                         >
                             <a href={`/blogs/${blog.titulo}/${ids[index]}`}>
                             {blog.titulo !== '' ? (
@@ -80,8 +77,8 @@ class Blogs extends Component {
 
     render() {
         return (
-            <div >
-                <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+            <div className="cards">
+                <Row gutter={{ xs: 8, sm: 12, md: 12, lg: 24 }}>
                     {
                         this.state.cards
                     }

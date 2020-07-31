@@ -3,3 +3,49 @@
     width: 80vmin;
     max-width: 85vmin;
 }
+.ql-editor pre {
+    white-space: pre-wrap;
+      margin-bottom: 5px;
+      margin-top: 5px;
+      padding: 5px 10px;
+      border-radius: 4px;
+  }
+  
+  .ql-editor pre.ql-syntax {
+    background-color: #23241f;
+    color: #f8f8f2;
+    overflow: hidden;
+    margin: 7px;
+    padding: 1%;
+    font-size: 12px;
+    width: max-content;
+  }
+  
+  
+  .ql-editor a {
+    color: darkcyan;
+    text-shadow: darkgrey;
+  }
+  
+  .ql-editor a:hover {
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 3px darkcyan;
+  }
+
+  .ql-editor blockquote {
+    border-left: 1vmin solid #ccc;
+    background-color: #fff9d7;
+    margin: 7px;
+    max-width: max-content;
+  }
+  .ql-editor img {
+    width: 100%;
+    object-fit: contain;
+    
+  }
+
+  div.ql-editor iframe {
+    display: block;
+    border-radius: 5px;
+  }
+  
