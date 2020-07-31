@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import Fab from '@material-ui/core/Fab';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import "../../../../node_modules/react-quill/dist/quill.core.css";
+import ScrollTop from './../../commons/BackToTop/BackToTop'
 
 export default class Blog extends Component {
     constructor(props) {
@@ -45,10 +48,11 @@ export default class Blog extends Component {
     render() {
         return (
             <div className="postPage" style={{color:'#4b4b4b'}}>
+                <div id="top"></div>
                 {this.state.fetching ?
                     (<h6>Cargando...</h6>) :
                     (
-                        <div>
+                        <div className="postBody">
 
                             <h4>
                                 {this.state.result.titulo !== '' ?
@@ -71,6 +75,12 @@ export default class Blog extends Component {
                         </div>
                     )
                 }
+                <ScrollTop>
+                <Fab className="colorInherit"
+                color="inherit" size="small" aria-label="scroll back to top">
+                    <KeyboardArrowUpIcon />
+                </Fab>
+            </ScrollTop>
             </div>
         )
     }

@@ -1,40 +1,60 @@
+@media only screen
+and (orientation:landscape){
+  .createPage{
+    width: 60%;
+    margin: auto;
+    box-shadow: 0 0 20px 10px rgb(206, 206, 206);
+     background-color: rgb(251, 251, 251);
+     padding-top: 90px;
+     padding: 20px;
+     min-height: calc(100vh - 60px);
+  }
+}
+
+@media only screen
+and (orientation:portrait){
+  .createPage{
+    width: 90%;
+    margin: auto;
+    padding: 5px;
+    box-shadow: 0 0 20px 10px rgb(206, 206, 206);
+     background-color: rgb(251, 251, 251);
+     padding-top: 60px;
+     min-height: calc(100vh - 90px);
+  }
+}
 .avatar-uploader > .ant-upload {
     width: 128px;
     height: 128px;
   }
+  
 
   .title-cover {
-    min-width: 40vmin;
-    width: 80vmin;
-    max-width: 85vmin;
+    width: 100%;
     display: flex;
   }
   
   .title-cover .ipt{
     flex:9;
-    margin-top: 4vmin;
+    margin: auto;
   }
   
   
   .title-cover > .upd{
     flex:1;
-    align-self: flex-end;
-    margin-left: 10px;
+    margin:5px;
   }
 
 .tags-cat {
-  min-width: 40vmin;
-  width: 80vmin;
-  max-width: 85vmin;
   display: flex;  
+  width: 100%;
+  text-align: left;
+  margin-left: 5px;
 }
 
 
 
 .tags-cat .tag {
   flex: 15;
-  min-width: 35vmin;
-  width: 60vmin;
-  max-width: 62.5;
 }
 

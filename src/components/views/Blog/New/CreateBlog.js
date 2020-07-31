@@ -66,7 +66,8 @@ export default function CreateBlog(props) {
     const uploadButton = (
         <div>
             {loading ? <LoadingOutlined /> : <PlusOutlined />}
-            <div className="ant-upload-text">Subir</div>
+            <div className="ant-upload-text">Portada
+            <p>(Opcional)</p></div>
         </div>
     );
     //
@@ -114,21 +115,12 @@ export default function CreateBlog(props) {
                     variables = {
                         cover: url,
                         contenido: content,
-                        userId: props.curUser.id,
+                        userId: props.user.id,
                         titulo: title===''?moment(Date.now()).format("DD-MM YYYY"):title,
                         tags: tags,
                         fecha: moment(Date.now()).format("DD-MM YYYY")
                     }
                     console.log("Values: ",variables);
-                    // newEntry.set(variables,
-                    //     function(error) {
-                    //         if (error) {
-                    //             message.error({ content: 'Error!', key, duration: 2 });
-                    //         } else {
-                    //             message.success({ content: 'Guardado!', key, duration: 2 });
-                                
-                    //         }
-                    //     });
                 })
                 console.log(task);
             }).catch(
@@ -143,7 +135,7 @@ export default function CreateBlog(props) {
             variables = {
                 cover: '',
                 contenido: content,
-                userId: props.curUser.id,
+                userId: props.user.id,
                 titulo: title===''?moment(Date.now()).format("DD-MM YYYY"):title,
                 tags: tags,
                 fecha: moment(Date.now()).format("DD-MM YYYY")
@@ -162,9 +154,9 @@ export default function CreateBlog(props) {
                     }).then(
                         message.success({ content: 'Guardado!', key, duration: 2 })
                     )
-                window.location="/blogs";
+                window.location="/";
             },
-            2000
+            7000
         );
         
     }
@@ -177,7 +169,7 @@ export default function CreateBlog(props) {
     //---------------------------------RENDER
     const hasAccess = props.isAuth && (process.env.NODE_ENV==='development'||
     (process.env.NODE_ENV==='production' &&
-    process.env.REACT_APP_CREATOR_ID===props.curUser.id));
+    process.env.REACT_APP_CREATOR_ID===props.user.id));
     if (hasAccess === false){
         return (
             <div>
@@ -194,7 +186,7 @@ export default function CreateBlog(props) {
     }
     else{
         return (
-            <div style={{ maxWidth: '1500px', margin: '2rem auto' }}>
+            <div className="createPage">
                 <div style={{ textAlign: 'center' }}>
                     <Title level={2} >
                         Nueva Entrada
@@ -233,18 +225,16 @@ export default function CreateBlog(props) {
                     </div>
                 </div>
                 <QuillEditor
-                    placeholder={"Start Posting Something"}
+                    placeholder={"Escribe algo..."}
                     onEditorChange={onEditorChange}
                     onFilesChange={onFilesChange}
                 />
-                <Divider />
+                <br/>
                 <div className="tags-cat">
                     <div className="tag">
-                        <div>
-                        <h6>
+                        <h4>
                             Etiquetas
-                        </h6>
-                        </div>
+                        </h4>
                         <EditableTagGroup onTagsChange={onTagsChange} />
                     </div>
                 </div>
