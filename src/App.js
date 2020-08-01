@@ -24,6 +24,7 @@ class App extends Component {
   }
 
   componentWillMount(){
+    //document.title="HEX Blog";
     //auth de firebase
     firebase.auth().onAuthStateChanged(user => {
       if(user){

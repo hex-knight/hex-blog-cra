@@ -18,6 +18,7 @@ export default class Blog extends Component {
     }
 
     componentWillMount() {
+        document.title=this.props.match.params.title;
         this.setState({ fetching: true });
         const postId = this.props.match.params.postId;
         var starCountRef = firebase.database().ref('Blogs/' + postId);
