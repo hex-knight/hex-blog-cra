@@ -6,6 +6,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+div .shareButtons{
+  margin: 5px;
+}
+
+
+
+div.comments {
+  margin: 5px;
+}
+
 div.footer{
   height: '80px'; 
   display: 'flex';
@@ -94,7 +104,8 @@ div.postPage div.postBody{
 
 
 div.date {
-  margin: 15px;
+  margin-right: 15px;
+  text-align: right;
 }
 
 .date h6 {

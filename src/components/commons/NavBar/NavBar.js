@@ -90,7 +90,8 @@ class NavBar extends Component {
         </div>
         <Button
           className="menu__mobile-button"
-          type="primary"
+          ghost
+          type="text"
           onClick={() => this.showDrawer()}
         >
           <Icon type="align-right" />

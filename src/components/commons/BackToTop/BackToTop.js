@@ -16,17 +16,18 @@ export default function ScrollTop(props) {
     });
 
     const handleClick = (event) => {
-        //alert("Trying");
         const anchor = (event.target.ownerDocument || document).querySelector('#top');
-        console.log(anchor);
-        if (anchor) {
+        if (anchor && props.opType==='1') {
             anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }else if(props.opType==='2'){
+            document.location='/';
         }
     };
 
     return (
         <Zoom in={trigger}>
-            <div onClick={handleClick} role="presentation" className={classes.rt}>
+            <div onClick={handleClick} role="presentation" 
+            className={props.opType==='1'?classes.rt:classes.retrn}>
                 {children}
             </div>
         </Zoom>

@@ -67,6 +67,8 @@
   margin-top: 8px;
   display: none !important; /* use of important to overwrite ant-btn */
   background: transparent;
+  border-color: transparent !important;
+  
 }
 
 .menu_drawer .ant-drawer-body {

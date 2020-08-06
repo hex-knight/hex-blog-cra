@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {  Avatar } from '@material-ui/core';
 import firebase from 'firebase';
-import { message, Comment, Form, Tooltip, Button } from 'antd';
+import { message, Comment, Form, Tooltip, Button, Checkbox } from 'antd';
 import moment from 'moment';
 import TextArea from 'antd/lib/input/TextArea';
 
@@ -15,7 +15,8 @@ export default class CommentsInput extends Component {
             comment: '',
             comments: [],
             sending: false,
-            buttonDisabled: true
+            buttonDisabled: true,
+            anonimal: false
         }
     }
 
@@ -34,7 +35,10 @@ export default class CommentsInput extends Component {
                 let content = Object.values(snapshot.val()).reverse();
                 console.log("Result: ", content);
                 const renderComments = content.map((comm, index) => {
-                    return <Comment
+                    return (
+                    <React.Fragment>
+                    <Comment
+                        className="comment-content"
                         author={<p>{comm.nombre}</p>}
                         avatar={
                             <Avatar
@@ -53,6 +57,8 @@ export default class CommentsInput extends Component {
                             </Tooltip>
                         }
                     />
+                    </React.Fragment>
+                    )
                 });
                 this.setState({ comments: renderComments });
             }
@@ -63,18 +69,23 @@ export default class CommentsInput extends Component {
         this.setState({ comment: event.target.value });
     }
 
+    changeAnonimal = event =>{
+        this.setState({ anonimal: event.target.checked });
+    }
+
     sendComment = () => {
         this.setState({sending:true});
+        const an=this.state.anonimal;
         //console.log(comment);
         const key = 'updatable';
         const dbRef = firebase.database().ref('Comments/');
         const newEntry = dbRef.push();
         const variables = {
             postId: this.props.postId,
-            foto: this.props.user.photoURL,
-            nombre: `${this.props.user.name} ( ${this.props.user.email} )`,
+            foto: an?'':this.props.user.photoURL,
+            nombre: an?'Anónimo':(`${this.props.user.name}`),
             comentario: this.state.comment,
-            fecha: Date.now()
+            fecha: Date.now(),
         }
         console.log("Entry :", variables);
         setTimeout( () => {
@@ -103,6 +114,7 @@ export default class CommentsInput extends Component {
                 {this.props.isAuth ? (
                     <div>
                         <Comment
+                        author={<p>{this.props.user.name}</p>}
                         avatar={
                             <Avatar
                               src={this.props.user.photoURL}
@@ -112,8 +124,13 @@ export default class CommentsInput extends Component {
                      content={
                          <>
                         <Form.Item>
-                            <TextArea rows={4} onChange={this.changeComment} 
+                            <TextArea className="comment-area"
+                            allowClear bordered={false}
+                            autosize
+                            rows={2} onChange={this.changeComment} 
                             value={this.state.comment} />
+                            <Checkbox onChange={this.changeAnonimal}
+                            >Comentario Anónimo</Checkbox>
                         </Form.Item>
                         <Form.Item>
                             <Button disabled={this.state.comment===''?true:false}
