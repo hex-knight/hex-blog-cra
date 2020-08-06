@@ -31,7 +31,6 @@ export default class CommentsInput extends Component {
                     )
                 })
             } else {
-                const ids = Object.getOwnPropertyNames(snapshot.val()).reverse();
                 let content = Object.values(snapshot.val()).reverse();
                 console.log("Result: ", content);
                 const renderComments = content.map((comm, index) => {
