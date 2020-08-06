@@ -4,6 +4,9 @@ import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import "../../../../node_modules/react-quill/dist/quill.core.css";
 import ScrollTop from './../../commons/BackToTop/BackToTop'
+import CommentsInput from '../../commons/Comments/CommentsInput';
+import { Divider, Typography } from 'antd';
+const {Title} = Typography;
 
 export default class Blog extends Component {
     constructor(props) {
@@ -13,7 +16,6 @@ export default class Blog extends Component {
             result: null,
             fetching: false,
             content: null
-
         }
     }
 
@@ -55,27 +57,37 @@ export default class Blog extends Component {
                     (
                         <div className="postBody">
 
-                            <h4>
+                            <Title level={2}>
                                 {this.state.result.titulo !== '' ?
                                     this.state.result.titulo :
                                     this.state.result.fecha
                                 }
-                            </h4>
-                            <br />
+                            </Title>
                             {
                                 this.state.result.titulo !== '' ?
                                     (
                                         <div className="date">
-                                            <h6>{this.state.result.fecha}</h6>
+                                            <h4 >{this.state.result.fecha}</h4>
                                         </div>
                                     ) : null
                             }
+                            <Divider />
                             <div 
                             className="ql-editor"
                             dangerouslySetInnerHTML={{ __html: this.state.result.contenido }} />
                         </div>
                     )
                 }
+                <div className="comments">
+                    <Divider />
+                    <Title level={4}>Comentarios</Title>
+                <CommentsInput 
+                postId={this.props.match.params.postId}
+                user={this.props.user}
+                isAuth={this.props.isAuth}
+                />
+                <Divider />
+                </div>
                 <ScrollTop>
                 <Fab className="colorInherit"
                 color="inherit" size="small" aria-label="scroll back to top">

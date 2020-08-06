@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Home.css';
+import * as axios from 'axios';
 
 export default class Home extends Component {
   constructor(props) {
@@ -21,18 +22,22 @@ export default class Home extends Component {
 
   
 
+  
+
     render() {
         return (
-            <div>
-              <h4>
+            <div className="postPage">
+              <div className="postBody">
+              <h3>
                 Home Page
-              </h4>
+              </h3>
               <h5>
                 Bienvenido {
                   this.props.user ? 
                   this.props.user.displayName : null
                 }
               </h5>
+              
               <h6>
                 Por hacer:
                 <li>
@@ -72,6 +77,7 @@ export default class Home extends Component {
                   Research comentarios ? reacciones ? sin interacción
                 </li>
               </h6>
+              </div>
       </div>
         )
     }

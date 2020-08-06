@@ -43,6 +43,14 @@ and (orientation:portrait){
   }
 }
 
+
+
+.comments-section {
+  text-align: left;
+  overflow-y: auto;
+  max-height: 200px;
+}
+
 .col{
   margin-top: 5px;
   margin-bottom: 5px;

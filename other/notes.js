@@ -7,6 +7,20 @@ const result={
     phoneNumber: string/null,
     photoUrl: string,
 }
+[
+    {
+        role:"Admin",
+        group:"AdmingBG"
+    },
+    {
+        role:"Verigficator",
+        group:"VerificatorBG"
+    },
+    {
+        role:"Validator",
+        group:"ValidatorBG"
+    }
+]
 //TO RETRIEVE AN IMAGE WITH THE FILENAME
 // const storageRef = firebase.storage()
 //             .ref(`/BlogPictures/${file.name}`);
@@ -46,6 +60,15 @@ const result={
             //         }
             //     })
 //----------------------------------------
+//To Add a Spotify Song to the HTML body:
+{/*             <iframe 
+                    src="SONG URL" 
+                    width="600" 
+                    height="80" 
+                    frameborder="0" 
+                    allowtransparency="true" allow="encrypted-media">
+                </iframe> 
+*/}
 
 
 

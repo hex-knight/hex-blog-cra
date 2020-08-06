@@ -59,7 +59,7 @@ class App extends Component {
   handleLogout(){
     firebase.auth().signOut()
       .then(result => {
-        this.setState({isLoggedIn:false});
+        this.setState({isAuth:false});
         this.setState({curUser: null});
         console.log(window.location);
         if(window.location.pathname==="/blog/new")
@@ -99,7 +99,8 @@ class App extends Component {
               <Blogs user={this.state.user} />
             </Route>
             <Route exact path="/blogs/:title/:postId"
-              render={(props)=> <Blog {...props} user={this.state.user} /> }
+              render={(props)=> <Blog {...props} user={this.state.user} 
+              isAuth={this.state.isAuth}/> }
             /> 
           </div>
         <Footer className="footer"/>
