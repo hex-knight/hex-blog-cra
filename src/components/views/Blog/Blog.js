@@ -104,38 +104,44 @@ export default class Blog extends Component {
                             <div
                                 className="ql-editor"
                                 dangerouslySetInnerHTML={{ __html: this.state.result.contenido }} />
+                        <div className="comments">
+                        <Divider />
+                        <Collapse className="collapsable"
+                            bordered={false}>
+                            <Panel header="Comentarios" key="1">
+                                <CommentsInput
+                                    postId={this.props.match.params.postId}
+                                    user={this.props.user}
+                                    isAuth={this.props.isAuth}
+                                />
+                            </Panel>
+                        </Collapse>
+                    </div>
+                    <div className="shareArea">
+                        <FacebookShareButton className="shareButtons"
+                            url={window.location.href}
+                            title={this.props.match.params.title}
+                            >
+                            <FacebookIcon size={32} round />
+                        </FacebookShareButton>
+                        <TwitterShareButton className="shareButtons"
+                            url={window.location.href}
+                            title={this.props.match.params.title}
+                            >
+                            <TwitterIcon size={32} round />
+                        </TwitterShareButton>
+                        <WhatsappShareButton className="shareButtons"
+                            url={window.location.href}
+                            title={this.props.match.params.title}
+                            separator=" | "
+                            >
+                            <WhatsappIcon size={32} round />
+                        </WhatsappShareButton>
+                    </div>
                         </div>
+                        
                     )
                 }
-
-                <div className="comments">
-                    <Divider />
-                    <Collapse className="collapsable"
-                        bordered={false}>
-                        <Panel header="Comentarios" key="1">
-                            <CommentsInput
-                                postId={this.props.match.params.postId}
-                                user={this.props.user}
-                                isAuth={this.props.isAuth}
-                            />
-                        </Panel>
-                    </Collapse>
-                </div>
-                <div >
-                    <FacebookShareButton className="shareButtons"
-                        url={window.location.href}
-                        >
-                        <FacebookIcon size={32} round />
-                    </FacebookShareButton>
-                    <TwitterShareButton className="shareButtons"
-                        url={window.location}>
-                        <TwitterIcon size={32} round />
-                    </TwitterShareButton>
-                    <WhatsappShareButton className="shareButtons"
-                        url={window.location}>
-                        <WhatsappIcon size={32} round />
-                    </WhatsappShareButton>
-                </div>
                 <ScrollTop opType='1'>
                     <Fab className="colorInherit"
                         color="inherit" size="small" aria-label="scroll back to top">
