@@ -20,7 +20,8 @@ export default class Blog extends Component {
         this.state = {
             result: null,
             fetching: false,
-            content: null
+            content: null,
+            cover: ''
         }
     }
 
@@ -41,7 +42,7 @@ export default class Blog extends Component {
             } else {
                 let Post = snapshot.val()
 
-                this.setState({ result: Post })
+                this.setState({ result: Post , cover: Post.cover})
                 setTimeout(
                     this.setState({ fetching: false }),
                     2000
@@ -56,22 +57,28 @@ export default class Blog extends Component {
     render() {
         return (
             <div className="postPage" style={{ color: '#4b4b4b' }}>
+                <Helmet>
+                    <title>
+                        `${this.props.match.params.title} | Hex Blog`
+                    </title>
+                    <link rel="canonical"
+                        href="https://hex-blog.netlify.app/"
+                    />
+                    <meta name="description"
+                        content="No te va a gustar"
+                    />
+                    <meta name="image"
+                    content={this.state.cover}
+                    />
+                    <meta name="url"
+                    content={document.location}
+                    />
+                </Helmet>
                 <div id="top"></div>
                 {this.state.fetching ?
                     (<h6>Cargando...</h6>) :
                     (
                         <div className="postBody">
-                            <Helmet>
-                                <title>
-                                    {this.state.result.titulo}
-                                </title>
-                                <link rel="canonical"
-                                href="https://hex-blog.netlify.app/"
-                                />
-                                <meta name="description"
-                                content="Test Description"
-                                />
-                            </Helmet>
                             <Title level={2}>
                                 {this.state.result.titulo !== '' ?
                                     this.state.result.titulo :
