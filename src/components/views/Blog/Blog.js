@@ -64,7 +64,10 @@ export default class Blog extends Component {
                     <link rel="canonical"
                         href="https://hex-blog.netlify.app/"
                     />
-                    <meta name="description"
+                    <meta name="og:title"
+                        content={this.props.match.params.title}
+                    />
+                    <meta name="og:description"
                         content="No te va a gustar"
                     />
                     <meta name="image"
@@ -116,7 +119,9 @@ export default class Blog extends Component {
                 </div>
                 <div >
                     <FacebookShareButton className="shareButtons"
-                        url={"https://hex-blog.netlify.app/"}>
+                        url={"https://hex-blog.netlify.app/"+
+                        this.props.match.params.title+"/"+
+                        this.props.match.params.postId}>
                         <FacebookIcon size={32} round />
                     </FacebookShareButton>
                     <TwitterShareButton className="shareButtons"
