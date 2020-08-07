@@ -70,10 +70,10 @@ export default class Blog extends Component {
                     <meta name="og:description"
                         content="No te va a gustar"
                     />
-                    <meta name="image"
+                    <meta name="og:image"
                     content={this.state.cover}
                     />
-                    <meta name="url"
+                    <meta name="og:url"
                     content={document.location}
                     />
                 </Helmet>
@@ -119,9 +119,7 @@ export default class Blog extends Component {
                 </div>
                 <div >
                     <FacebookShareButton className="shareButtons"
-                        url={"https://hex-blog.netlify.app/"+
-                        this.props.match.params.title+"/"+
-                        this.props.match.params.postId}>
+                        url={window.location}>
                         <FacebookIcon size={32} round />
                     </FacebookShareButton>
                     <TwitterShareButton className="shareButtons"
