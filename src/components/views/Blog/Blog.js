@@ -59,7 +59,7 @@ export default class Blog extends Component {
             <div className="postPage" style={{ color: '#4b4b4b' }}>
                 <Helmet>
                     <title>
-                        `${this.props.match.params.title} | Hex Blog`
+                        {this.props.match.params.title} | Hex Blog
                     </title>
                     <link rel="canonical"
                         href="https://hex-blog.netlify.app/"
