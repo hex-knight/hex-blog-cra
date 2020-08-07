@@ -27,7 +27,7 @@ class Blogs extends Component {
             } else {
                 const ids=Object.getOwnPropertyNames(snapshot.val()).reverse();
                 let content = Object.values(snapshot.val()).reverse();
-                console.log(content);
+                
                 const renderBlogs = content.map((blog, index) => {
                     return <Col xs={24} md={12} lg={12} xl={8}
                     className="col">
@@ -67,7 +67,7 @@ class Blogs extends Component {
                     </Col>
                 });
                 this.setState({ cards: renderBlogs });
-                console.log("Done: ", this.state.cards);
+                
             }
         });
     }

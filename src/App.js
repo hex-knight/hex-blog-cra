@@ -8,6 +8,7 @@ import Home from './components/views/Home/Home';
 import CreateBlog from './components/views/Blog/New/CreateBlog';
 import Blogs from './components/views/Blog/View/Blogs';
 import Blog from './components/views/Blog/Blog';
+import { Helmet } from 'react-helmet';
 
 class App extends Component {
   constructor(props) {
@@ -82,6 +83,9 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <Helmet>
+          <title>HEX Blog</title>
+        </Helmet>
         <NavBar 
           handleAuth={this.handleAuth} 
           handleLogout={this.handleLogout}

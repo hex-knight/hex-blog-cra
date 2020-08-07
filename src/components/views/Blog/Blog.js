@@ -8,6 +8,7 @@ import ScrollTop from './../../commons/BackToTop/BackToTop'
 import CommentsInput from '../../commons/Comments/CommentsInput';
 import { Divider, Typography, Collapse } from 'antd';
 import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, WhatsappShareButton, WhatsappIcon } from 'react-share';
+import { Helmet } from 'react-helmet';
 
 const { Title } = Typography;
 const { Panel } = Collapse;
@@ -60,7 +61,17 @@ export default class Blog extends Component {
                     (<h6>Cargando...</h6>) :
                     (
                         <div className="postBody">
-
+                            <Helmet>
+                                <title>
+                                    {this.state.result.titulo}
+                                </title>
+                                <link rel="canonical"
+                                href="https://hex-blog.netlify.app/"
+                                />
+                                <meta name="description"
+                                content="Test Description"
+                                />
+                            </Helmet>
                             <Title level={2}>
                                 {this.state.result.titulo !== '' ?
                                     this.state.result.titulo :
@@ -85,20 +96,20 @@ export default class Blog extends Component {
 
                 <div className="comments">
                     <Divider />
-                    <Collapse  className="collapsable"
-                    bordered={false}>
-                    <Panel header="Comentarios" key="1">    
-                    <CommentsInput
-                        postId={this.props.match.params.postId}
-                        user={this.props.user}
-                        isAuth={this.props.isAuth}
-                    />
-                    </Panel>
+                    <Collapse className="collapsable"
+                        bordered={false}>
+                        <Panel header="Comentarios" key="1">
+                            <CommentsInput
+                                postId={this.props.match.params.postId}
+                                user={this.props.user}
+                                isAuth={this.props.isAuth}
+                            />
+                        </Panel>
                     </Collapse>
                 </div>
                 <div >
                     <FacebookShareButton className="shareButtons"
-                        url={window.location}>
+                        url={"https://hex-blog.netlify.app/"}>
                         <FacebookIcon size={32} round />
                     </FacebookShareButton>
                     <TwitterShareButton className="shareButtons"
