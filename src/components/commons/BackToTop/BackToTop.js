@@ -25,11 +25,18 @@ export default function ScrollTop(props) {
     };
 
     return (
-        <Zoom in={trigger}>
+        props.opType==='1'?(
+            <Zoom in={trigger}>
             <div onClick={handleClick} role="presentation" 
             className={props.opType==='1'?classes.rt:classes.retrn}>
                 {children}
             </div>
         </Zoom>
+        ):(<Zoom in>
+            <div onClick={handleClick} role="presentation" 
+            className={props.opType==='1'?classes.rt:classes.retrn}>
+                {children}
+            </div>
+        </Zoom>)
     );
 }

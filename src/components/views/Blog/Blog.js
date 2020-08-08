@@ -7,8 +7,9 @@ import "../../../../node_modules/react-quill/dist/quill.core.css";
 import ScrollTop from './../../commons/BackToTop/BackToTop'
 import CommentsInput from '../../commons/Comments/CommentsInput';
 import { Divider, Typography, Collapse } from 'antd';
-import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, WhatsappShareButton, WhatsappIcon } from 'react-share';
+import { FacebookShareButton, TwitterShareButton} from 'react-share';
 import { Helmet } from 'react-helmet';
+import { SocialMediaIconsReact } from 'social-media-icons-react';
 
 const { Title } = Typography;
 const { Panel } = Collapse;
@@ -42,7 +43,7 @@ export default class Blog extends Component {
             } else {
                 let Post = snapshot.val()
 
-                this.setState({ result: Post , cover: Post.cover})
+                this.setState({ result: Post, cover: Post.cover })
                 setTimeout(
                     this.setState({ fetching: false }),
                     2000
@@ -65,20 +66,20 @@ export default class Blog extends Component {
                         href="https://hex-blog.netlify.app/"
                     />
                     <meta name="og:title"
-                    property="og:title"
+                        property="og:title"
                         content={this.props.match.params.title}
                     />
                     <meta name="og:description"
-                    property="og:description"
+                        property="og:description"
                         content="No te va a gustar"
                     />
                     <meta name="og:image"
-                    property="og:image"
-                    content={this.state.cover}
+                        property="og:image"
+                        content={this.state.cover}
                     />
                     <meta name="og:url"
-                    property="og:url"
-                    content={document.location}
+                        property="og:url"
+                        content={document.location}
                     />
                 </Helmet>
                 <div id="top"></div>
@@ -104,42 +105,45 @@ export default class Blog extends Component {
                             <div
                                 className="ql-editor"
                                 dangerouslySetInnerHTML={{ __html: this.state.result.contenido }} />
-                        <div className="comments">
-                        <Divider />
-                        <Collapse className="collapsable"
-                            bordered={false}>
-                            <Panel header="Comentarios" key="1">
-                                <CommentsInput
-                                    postId={this.props.match.params.postId}
-                                    user={this.props.user}
-                                    isAuth={this.props.isAuth}
-                                />
-                            </Panel>
-                        </Collapse>
-                    </div>
-                    <div className="shareArea">
-                        <FacebookShareButton className="shareButtons"
-                            url={window.location.href}
-                            title={this.props.match.params.title}
-                            >
-                            <FacebookIcon size={32} round />
-                        </FacebookShareButton>
-                        <TwitterShareButton className="shareButtons"
-                            url={window.location.href}
-                            title={this.props.match.params.title}
-                            >
-                            <TwitterIcon size={32} round />
-                        </TwitterShareButton>
-                        <WhatsappShareButton className="shareButtons"
-                            url={window.location.href}
-                            title={this.props.match.params.title}
-                            separator=" | "
-                            >
-                            <WhatsappIcon size={32} round />
-                        </WhatsappShareButton>
-                    </div>
+                            <div className="comments">
+                                <Divider />
+                                <Collapse className="collapsable"
+                                    bordered={false}>
+                                    <Panel header="Comentarios" key="1">
+                                        <CommentsInput
+                                            postId={this.props.match.params.postId}
+                                            user={this.props.user}
+                                            isAuth={this.props.isAuth}
+                                            handleAuth={this.props.handleAuth}
+                                        />
+                                    </Panel>
+                                </Collapse>
+                            </div>
+                            <div className="shareArea">
+
+                                <FacebookShareButton className="shareButtons"
+                                    url={window.location.href}
+                                    title={this.props.match.params.title}
+                                >
+                                    <SocialMediaIconsReact borderColor="rgba(7,7,7,0.25)"
+                                        borderWidth="5" borderStyle="solid" icon="facebook"
+                                        iconColor="rgba(215,215,215,1)" backgroundColor="rgba(0,0,0,1)"
+                                        iconSize="7" roundness="50%"
+                                        size="30" />
+                                </FacebookShareButton>
+                                <TwitterShareButton className="shareButtons"
+                                    url={window.location.href}
+                                    title={this.props.match.params.title}
+                                >
+                                    <SocialMediaIconsReact borderColor="rgba(7,7,7,0.25)"
+                                        borderWidth="5" borderStyle="solid" icon="twitter"
+                                        iconColor="rgba(215,215,215,1)" backgroundColor="rgba(0,0,0,1)"
+                                        iconSize="7" roundness="50%"
+                                        size="30" />
+                                </TwitterShareButton>
+                            </div>
                         </div>
-                        
+
                     )
                 }
                 <ScrollTop opType='1'>

@@ -104,7 +104,9 @@ class App extends Component {
             </Route>
             <Route exact path="/blogs/:title/:postId"
               render={(props)=> <Blog {...props} user={this.state.user} 
-              isAuth={this.state.isAuth}/> }
+              isAuth={this.state.isAuth}
+              handleAuth={this.handleAuth}
+              /> }
             />
           </div>
         <Footer className="footer"/>
