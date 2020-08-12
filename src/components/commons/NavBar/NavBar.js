@@ -6,6 +6,8 @@ import './Sections/Navbar.css';
 import logo from './../../../hex.png';
 
 import { VpnKey, ExitToApp } from '@material-ui/icons/';
+import BlogContext from '../../../contex/context';
+import SearchBlog from '../SearchBlog/SearchBlog';
 
 class NavBar extends Component {
   constructor(props) {
@@ -15,6 +17,8 @@ class NavBar extends Component {
     }
    
   }
+
+  static contextType = BlogContext;
 
   renderLoginButton() {
     //si está logueado
@@ -36,7 +40,7 @@ class NavBar extends Component {
     else {
       //si no lo está
       return (
-        <div onClick={this.props.handleAuth}>
+        <div onClick={this.context.handleAuth}>
           <p>
           <VpnKey />
           </p>
@@ -46,7 +50,7 @@ class NavBar extends Component {
   }
   renderLogoutButton(){
     return(
-      <div onClick={this.props.handleLogout}>
+      <div onClick={this.context.handleLogout}>
               <p ><ExitToApp/></p>
               </div>
     );
@@ -86,8 +90,13 @@ class NavBar extends Component {
               {this.renderLogoutButton()}
             </Menu.Item>
           ) : null}
+          <div className="search-bar">
+        <SearchBlog 
+        dataSet={this.context.dataSet}/>
+        </div>
         </Menu>
         </div>
+        
         <Button
           className="menu__mobile-button"
           ghost
@@ -107,8 +116,8 @@ class NavBar extends Component {
           <LeftMenu mode="inline" 
           isAuth={this.props.isAuth}
           curUser={this.props.user}/>
-          
           <Menu mode="inline">
+          
           <Menu.Item key="Login">
             {this.renderLoginButton()}
             {/* Login */}

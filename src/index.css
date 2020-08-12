@@ -11,8 +11,6 @@ div .shareButtons{
 }
 
 
-
-
 div.comments {
   margin: 5px;
 }
@@ -89,10 +87,7 @@ input.error {
   max-width: max-content;
 }
 
-div.postPage div.postBody{
-  padding-top: 80px;
-  min-height: calc(100vh - 40px);
-}
+
 
 
 
@@ -125,6 +120,26 @@ div.ql-editor iframe {
 
 @media only screen 
 and (orientation:landscape){
+  div.postPage div.postBody{
+    padding-top: 45px;
+    min-height: calc(100vh - 40px);
+  }
+  div.post-title{
+    height: 25vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  div.post-title > h2{
+    color: rgb(255, 255, 255);
+    text-shadow: 0px 0px 5px black;
+    font-family: 'Julius Sans One';
+    font-size: 40px;
+  }
   div.postPage {
     width: 60%;
     margin: auto;  
@@ -142,6 +157,26 @@ box-shadow: 0 0 3px rgb(7, 6, 6);
 }
 @media only screen 
 and (orientation:portrait){
+  div.postPage div.postBody{
+    padding-top: 55px;
+    min-height: calc(100vh - 40px);
+  }
+  div.post-title{
+    height: 15vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  div.post-title > h2{
+    color: rgb(255, 255, 255);
+    text-shadow: 0px 0px 5px black;
+    font-family: 'Julius Sans One';
+    font-size: 30px;
+  }
   div.postPage {
     width: 90%;
     margin: auto; 
@@ -156,42 +191,3 @@ text-align: center;
 box-shadow: 0 0 3px rgb(0, 0, 0);
 }
 }
-
-/* 
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-
-}
-
-
-@media only screen 
-and (max-width : 1200px) { 
-  div.ql-editor iframe {
-    display: block;
-  }
-
-.ql-editor iframe {
-  max-height: 220px;  
-  height: 350px;
-  box-shadow: 0 0 3px rgb(231, 9, 9);
-}
-}
-
-
-
-@media only screen 
-and (max-width : 700px) { 
-  div.ql-editor iframe {
-    display: block;
-  }
-  .ql-editor iframe {
-    max-width: 420px;
-    min-height: 236px;
-    margin: auto;
-    box-shadow: 0 0 3px black;
-  }
-}
-
-
-  */

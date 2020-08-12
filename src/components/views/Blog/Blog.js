@@ -87,12 +87,19 @@ export default class Blog extends Component {
                     (<h6>Cargando...</h6>) :
                     (
                         <div className="postBody">
-                            <Title level={2}>
+                            <div className="post-title"
+                            style={{
+                                backgroundImage:`url(${this.state.result.cover})`
+                            }}
+                            >
+                            <Title level={2}
+                            >
                                 {this.state.result.titulo !== '' ?
                                     this.state.result.titulo :
                                     this.state.result.fecha
                                 }
                             </Title>
+                            </div>
                             {
                                 this.state.result.titulo !== '' ?
                                     (

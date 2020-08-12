@@ -9,6 +9,7 @@ import CreateBlog from './components/views/Blog/New/CreateBlog';
 import Blogs from './components/views/Blog/View/Blogs';
 import Blog from './components/views/Blog/Blog';
 import { Helmet } from 'react-helmet';
+import BlogContext from './contex/context';
 
 class App extends Component {
   constructor(props) {
@@ -17,11 +18,19 @@ class App extends Component {
     this.state = {
        user: null,
        isAuth: null,
+       displayMode: 'grid',
+       dataSet: []
     }
     //bind handleAuth
     //bind handleLogout
     this.handleAuth = this.handleAuth.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.changeDisplayMode = this.changeDisplayMode.bind(this);
+    this.changeDataSet = this.changeDataSet.bind(this);
+  }
+
+  changeDataSet = data =>{
+    this.setState({dataSet:data});
   }
 
   componentWillMount(){
@@ -77,22 +86,40 @@ class App extends Component {
       })
   }
 
-
+  changeDisplayMode(){
+    this.setState({
+      displayMode: (this.state.displayMode==='grid'?'list':'grid')
+    });
+  }
   
 
   render() {
     return (
-      <React.Fragment>
+      <BlogContext.Provider
+        value={{
+          //variables:
+          user: this.state.user,
+          isAuth: this.state.isAuth,
+          displayMode: this.state.displayMode,
+          dataSet: this.state.dataSet,
+          //funciones:
+          changeDataSet: this.changeDataSet,
+          handleAuth: this.handleAuth,
+          handleLogout: this.handleLogout,
+          changeDisplayMode: this.changeDisplayMode
+        }}
+      >
         <Helmet>
           <title>HEX Blog</title>
         </Helmet>
+        
+        <div className="App">
         <NavBar 
-          handleAuth={this.handleAuth} 
-          handleLogout={this.handleLogout}
+          // handleAuth={this.handleAuth} 
+          // handleLogout={this.handleLogout}
           user={this.state.user}
           isAuth={this.state.isAuth}
         />
-        <div className="App">
             <Route exact path="/todo">
               <Home user={this.state.user} />
             </Route>
@@ -110,7 +137,7 @@ class App extends Component {
             />
           </div>
         <Footer className="footer"/>
-      </React.Fragment>
+      </BlogContext.Provider>
     );
   }
 }

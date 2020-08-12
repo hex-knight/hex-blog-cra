@@ -26,56 +26,29 @@ export default class Home extends Component {
     render() {
         return (
             <div className="postPage">
-              <div className="postBody">
+              <div className="postBody"
+              style={{textAlign:'left'}}>
               <h3>
                 Home Page
               </h3>
-              <h5>
+              <h2>
                 Bienvenido {
                   this.props.user ? 
                   this.props.user.displayName : null
                 }
-              </h5>
+              </h2>
               
-              <h6>
-                Por hacer:
-                <li>
-                  Botón de "Regresar" para cada Blog (en el component)
-                </li>
-                <li>
-                  Mostrar Tags en cada Blog
-                </li>
-                <li>
+              <ul>
+                <h2>
                   POC: filtrar por tag
-                </li>
-                <li>
-                  POC: poder alternar entre GRID y LIST para el Index
-                </li>
-                <li>
-                  Reducir tamaño para pantallas tipo landscape y mantener para portrait
-                </li>
-                <li>
-                  Loading cards cuando entra al index: timeout de 2000ms
-                </li>
-                <li>
-                  Galeria: revisar (y eliminar) fotografías almacenadas
-                </li>
-                <li>
-                  Habilitar opciones de borrar posts
-                </li>
-                <li>
-                  Ideas para la homepage???Convertir index en homepage?
-                </li>
-                <li>
-                  Research buscador
-                </li>
-                <li>
+                  <ol>
                   Hacer banco de Tags
-                </li>
-                <li>
-                  Research comentarios ? reacciones ? sin interacción
-                </li>
-              </h6>
+                  </ol>
+                </h2>
+                <h2>
+                  Research buscador
+                </h2>
+              </ul>
               </div>
       </div>
         )

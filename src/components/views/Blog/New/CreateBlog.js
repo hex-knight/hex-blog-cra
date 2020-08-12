@@ -151,12 +151,11 @@ export default function CreateBlog(props) {
                         } else {
                             message.success({ content: 'Guardado!', key, duration: 2 });
                         }
-                    }).then(
-                        message.success({ content: 'Guardado!', key, duration: 2 })
-                    )
+                    })
+                    message.success({ content: 'Guardado!', key, duration: 2 })
                 window.location="/";
             },
-            7000
+            2000
         );
         
     }
