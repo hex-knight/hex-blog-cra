@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import LeftMenu from './Sections/LeftMenu';
-//import RightMenu from './Sections/RightMenu';
 import { Drawer, Button, Icon, Menu } from 'antd';
 import './Sections/Navbar.css';
 import logo from './../../../hex.png';
@@ -22,11 +21,11 @@ class NavBar extends Component {
 
   renderLoginButton() {
     //si está logueado
-    if (this.props.isAuth) {
+    if (this.props.user!==null) {
       return (
         <div >
             <p>
-              {this.props.user.name} 
+              {/* {this.props.user.name}  */}
               <img
                 src={this.props.user.photoURL}
                 alt={this.props.user.displayName}
@@ -81,19 +80,18 @@ class NavBar extends Component {
         </div>
         <div className="menu_rigth">
         <Menu mode="horizontal">
+        <Menu.Item key="search">
+              <SearchBlog source={this.context.dataSet}/>
+            </Menu.Item>
           <Menu.Item key="Login">
             {this.renderLoginButton()}
             {/* Login */}
           </Menu.Item>
-          { this.props.isAuth ? (
+          { this.props.user ? (
             <Menu.Item key="Logout">
               {this.renderLogoutButton()}
             </Menu.Item>
           ) : null}
-          <div className="search-bar">
-        <SearchBlog 
-        dataSet={this.context.dataSet}/>
-        </div>
         </Menu>
         </div>
         
@@ -128,6 +126,7 @@ class NavBar extends Component {
             </Menu.Item>
           ) : null}
         </Menu>
+        <SearchBlog source={this.context.dataSet}/>
         </Drawer>
       </div>
     </nav>

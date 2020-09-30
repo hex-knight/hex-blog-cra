@@ -1,7 +1,7 @@
 import _ from 'lodash'
 //import faker from 'faker'
 import React, { PureComponent } from 'react'
-import { Search, Grid } from 'semantic-ui-react'
+import { Search} from 'semantic-ui-react'
 
 
 
@@ -15,14 +15,14 @@ export default class SearchBlog extends PureComponent {
            isLoading: false,
            results: [],
            value: '',
-           source: this.props.dataSet
+           source: this.props.source
       }
     this.renderResults = this.renderResults.bind(this)
   }
 
   componentDidUpdate(prevProps){
-      if(prevProps.dataSet !== this.props.dataSet){
-          this.setState({source:this.props.dataSet})
+      if(prevProps.source !== this.props.source){
+          this.setState({source:this.props.source})
       }
   }
   
@@ -40,11 +40,12 @@ export default class SearchBlog extends PureComponent {
     this.setState({ isLoading: true, value })
 
     setTimeout(() => {
-      if (this.state.value.length < 3) return this.resetState()
+      if (this.state.value.length < 2) return this.resetState()
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = (result) => re.test(result.titulo)||re.test(result.contenido)||re.test(result.fecha)
-
+      const isMatch = (result) => re.test(result.titulo)||
+                                  re.test(result.contenido)||
+                                  re.test(result.fecha)
       this.setState({
         isLoading: false,
         results: _.filter(this.state.source, isMatch),
@@ -53,30 +54,29 @@ export default class SearchBlog extends PureComponent {
   }
 
   renderResults = results =>{
-      return [
-         results.cover && (
+      return <div 
+      onClick={() => window.location = `/blogs/${results.titulo}/${results.idBlog}`
+      }
+      >
+         {results.cover && (
           <div key='image' className='image'>
             <img src={results.cover} alt={results.titulo} />
           </div>
-        ),
+        )}
         <div key='content' className='content'>
           {results.titulo && <div className='title'>{results.titulo}</div>}
           {results.fecha && <div className='description'>{results.fecha}</div>}
           
-        </div>,
-        ]
+        </div>
+        </div>
   }
 
   render() {
-    // const { isLoading, value, results } = this.state
-
     return (
-      <Grid>
-        <Grid.Column width={6}>
           <Search
             aligned={'left'}
             icon={'search'}
-            
+            size="tiny"
             loading={this.state.isLoading}
             onResultSelect={this.handleResultSelect}
             onSearchChange={_.debounce(this.handleSearchChange, 500, {
@@ -88,20 +88,6 @@ export default class SearchBlog extends PureComponent {
                 results => this.renderResults(results)
             }
           />
-        </Grid.Column>
-        {/* <Grid.Column width={10}>
-          <Segment>
-            <Header>State</Header>
-            <pre style={{ overflowX: 'auto' }}>
-              {JSON.stringify(this.state, null, 2)}
-            </pre>
-            <Header>Options</Header>
-            <pre style={{ overflowX: 'auto' }}>
-              {JSON.stringify(this.state.source, null, 2)}
-            </pre>
-          </Segment>
-        </Grid.Column> */}
-      </Grid>
     )
   }
 }

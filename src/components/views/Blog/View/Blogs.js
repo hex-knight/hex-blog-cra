@@ -51,7 +51,7 @@ class Blogs extends Component {
                     // entry.postId=ids[index];
                     return entry={
                         ...entry,
-                        id: ids[index]
+                        idBlog: ids[index]
                     }
                 })
                 this.context.changeDataSet(content);

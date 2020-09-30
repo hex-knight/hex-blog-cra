@@ -48,11 +48,11 @@ export default class BlogList extends PureComponent {
                         cover=
                         {blog.cover !== '' ?
                             (<img alt="Cover" src={blog.cover}
-                            onClick={() => window.location = `/blogs/${blog.titulo}/${blog.id}`}
+                            onClick={() => window.location = `/blogs/${blog.titulo}/${blog.idBlog}`}
                             />) :
-                            (<a href={`/blogs/${blog.titulo}/${blog.id}`}>
+                            (<a href={`/blogs/${blog.titulo}/${blog.idBlog}`}>
                             <img src={logo} alt="Sin portada" className="no-cover"
-                            onClick={() => window.location = `/blogs/${blog.titulo}/${blog.id}`}   
+                            onClick={() => window.location = `/blogs/${blog.titulo}/${blog.idBlog}`}   
                             style={{
                                     borderRadius: '150%',
                                     minWidth: 'inherit',
@@ -70,7 +70,7 @@ export default class BlogList extends PureComponent {
                                                                                 const key = "deleting"
                                                                         message.loading({content:"Borrando",key});
                                                                         setTimeout(() =>{
-                                                                            firebase.database().ref('Blogs/'+blog.id).remove();
+                                                                            firebase.database().ref('Blogs/'+blog.idBlog).remove();
                                                                             message.success({content:"Borrado",key});
                                                                         },
                                                                             400
@@ -80,7 +80,7 @@ export default class BlogList extends PureComponent {
                                                                     ): null):null
                                 }
                     >
-                        <a href={`/blogs/${blog.titulo}/${blog.id}`}>
+                        <a href={`/blogs/${blog.titulo}/${blog.idBlog}`}>
                             {blog.titulo !== '' ? (
                                 <Meta
 
@@ -116,7 +116,7 @@ export default class BlogList extends PureComponent {
                                     blog.cover !== '' ? (
                                         <img alt="Cover" src={blog.cover}
                                             className="list-cover"
-                                            onClick={() => window.location = `/blogs/${blog.titulo}/${blog.id}`}
+                                            onClick={() => window.location = `/blogs/${blog.titulo}/${blog.idBlog}`}
                                         // style={{
                                         //     borderRadius: '150%',
                                         //     minWidth: 100,
@@ -127,7 +127,7 @@ export default class BlogList extends PureComponent {
                                         (
                                             <img src={logo} alt="Sin portada"
                                                 className="list-cover"
-                                                onClick={() => window.location = `/blogs/${blog.titulo}/${blog.id}`}
+                                                onClick={() => window.location = `/blogs/${blog.titulo}/${blog.idBlog}`}
                                             // style={{
                                             //     borderRadius: '150%',
                                             //     minWidth: 100,
@@ -146,7 +146,7 @@ export default class BlogList extends PureComponent {
                                                                                 const key = "deleting"
                                                                         message.loading({content:"Borrando",key});
                                                                         setTimeout(() =>{
-                                                                            firebase.database().ref('Blogs/'+blog.id).remove();
+                                                                            firebase.database().ref('Blogs/'+blog.idBlog).remove();
                                                                             message.success({content:"Borrado",key});
                                                                         },
                                                                             400
@@ -158,7 +158,7 @@ export default class BlogList extends PureComponent {
                             >
                                 <List.Item.Meta
                                     title={<a href={
-                                        `/blogs/${blog.titulo}/${blog.id}`
+                                        `/blogs/${blog.titulo}/${blog.idBlog}`
                                     }>
                                         {blog.titulo}</a>}
                                 />
