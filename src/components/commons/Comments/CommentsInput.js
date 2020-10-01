@@ -29,7 +29,7 @@ export default class CommentsInput extends Component {
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.getComments();
     }
 

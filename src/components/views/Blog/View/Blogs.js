@@ -32,7 +32,7 @@ class Blogs extends Component {
 
     static contextType = BlogContext;
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         var starCountRef = firebase.database().ref('Blogs/');
         starCountRef.on('value', async snapshot => {
             //console.log(Object.getOwnPropertyNames(snapshot.val()));

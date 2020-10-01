@@ -16,7 +16,7 @@ class RightMenu extends Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     firebase.auth().onAuthStateChanged(user => {
       if(user){
         const name = user.displayName;

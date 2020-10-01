@@ -35,7 +35,7 @@ class App extends Component {
 
   static contextType = BlogContext;
 
-  componentWillMount(){
+  UNSAFE_componentWillMount(){
     //document.title="HEX Blog";
     //auth de firebase
     firebase.auth().onAuthStateChanged(user => {
