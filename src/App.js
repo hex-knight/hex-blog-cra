@@ -99,8 +99,9 @@ class App extends Component {
   handleLogout(){
     firebase.auth().signOut()
       .then(result => {
-        this.setState({isAuth:false});
-        this.setState({curUser: null});
+        console.log(`${this.state.curUser.email} ha salido`);
+        this.setState({isAuth:false, curUser:null});
+        //this.setState({curUser: null});
         console.log(window.location);
         if(window.location.pathname==="/blog/new")
         {
@@ -109,9 +110,9 @@ class App extends Component {
             2000
           );
         }
-        console.log(`${this.state.curUser.email} ha salido`);
       })
       .catch(error => {
+        this.setState({isAuth:false, curUser:null})
         console.log(`${error.code}:${error.message}`)
       })
   }

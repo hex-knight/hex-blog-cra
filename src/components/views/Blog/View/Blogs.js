@@ -38,14 +38,13 @@ class Blogs extends Component {
         var starCountRef = firebase.database().ref('Blogs/');
         starCountRef.on('value', async snapshot => {
             //console.log(Object.getOwnPropertyNames(snapshot.val()));
-            if (snapshot.val() == null) {
+            if (snapshot.val() === null) {
                 this.setState({
                     cards: (
                         [<h5>No existen blogs disponibles :(</h5>]
                     )
                 })
             } else {
-
                 const ids = Object.getOwnPropertyNames(snapshot.val()).reverse();
                 let values = Object.values(snapshot.val()).reverse();
                 let content = values.map((entry, index)=>{

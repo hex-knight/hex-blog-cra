@@ -38,7 +38,7 @@ export default class CommentsInput extends Component {
     getComments(){
         var ref = firebase.database().ref("Comments/");
         ref.orderByChild("postId").equalTo(this.props.postId).on("value", async snapshot => {
-            if (snapshot.val() == null) {
+            if (snapshot.val() === null) {
                 this.setState({
                     comments: (
                         <h5>No existen comentarios :(</h5>
@@ -158,11 +158,11 @@ export default class CommentsInput extends Component {
                 {this.props.isAuth ? (
                     <div>
                         <Comment
-                            author={<p>{this.props.user.name}</p>}
+                            author={<p>{this.props.user ? this.props.user.name: null}</p>}
                             avatar={
                                 <Avatar
-                                    src={this.props.user.photoURL}
-                                    alt={this.props.user.displayName}
+                                    src={this.props.user ? this.props.user.photoURL: null}
+                                    alt={this.props.user ? this.props.user.displayName: null}
                                 />
                             }
                             content={
