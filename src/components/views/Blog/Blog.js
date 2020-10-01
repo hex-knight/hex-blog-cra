@@ -91,10 +91,10 @@ export default class Blog extends Component {
                         property="og:image"
                         content={this.state.cover}
                     />
-                    <meta name="og:url"
+                    {/* <meta name="og:url"
                         property="og:url"
                         content={document.location}
-                    />
+                    /> */}
                 </Helmet>
                 <div id="top"></div>
                 {this.state.fetching ?
