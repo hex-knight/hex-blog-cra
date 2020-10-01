@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //import firebase from 'firebase';
-// import * as firebase from 'firebase/app';
-// import 'firebase/database';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
 import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
@@ -28,43 +28,43 @@ export default class Blog extends Component {
         }
     }
 
-    // UNSAFE_componentWillMount() {
-    //     console.log(this.props)
-    //     document.title = this.props.match.params.title;
-    //     this.setState({ fetching: true });
-    //     const postId = this.props.match.params.postId;
-    //     try{
-    //     var starCountRef = firebase.database().ref('Blogs/' + postId);
-    //     console.log(starCountRef)
-    //     starCountRef.on('value', snapshot => {
-    //         if (snapshot.val() == null) {
-    //             console.log("ERROR");
-    //             this.setState({
-    //                 result: (
-    //                     <h5>Hubo un error obteniendo los datos :(</h5>
-    //                 )
-    //             })
-    //             this.setState({ fetching: false })
-    //         } else {
-    //             let Post = snapshot.val()
-    //             console.log(Post);
-    //             this.setState({ result: Post, cover: Post.cover })
-    //             setTimeout(
-    //                 this.setState({ fetching: false }),
-    //                 2000
-    //             );
-    //         }
-    //     });}
-    //     catch(error){
-    //         console.log("ERROR: ",error)
-    //         this.setState({
-    //             result: (
-    //                 <h5>Hubo un error obteniendo los datos :(</h5>
-    //             )
-    //         })
-    //         this.setState({ fetching: false })
-    //     }
-    // }
+    UNSAFE_componentWillMount() {
+        console.log(this.props)
+        //document.title = this.props.match.params.title;
+        this.setState({ fetching: true });
+        const postId = this.props.match.params.postId;
+        try{
+        var starCountRef = firebase.database().ref('Blogs/' + postId);
+        console.log(starCountRef)
+        starCountRef.on('value', snapshot => {
+            if (snapshot.val() === null) {
+                console.log("ERROR");
+                this.setState({
+                    result: (
+                        <h5>Hubo un error obteniendo los datos :(</h5>
+                    )
+                })
+                this.setState({ fetching: false })
+            } else {
+                let Post = snapshot.val()
+                console.log(Post);
+                this.setState({ result: Post, cover: Post.cover })
+                setTimeout(
+                    this.setState({ fetching: false }),
+                    2000
+                );
+            }
+        });}
+        catch(error){
+            console.log("ERROR: ",error)
+            this.setState({
+                result: (
+                    <h5>Hubo un error obteniendo los datos :(</h5>
+                )
+            })
+            this.setState({ fetching: false })
+        }
+    }
 
 
 
