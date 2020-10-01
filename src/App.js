@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from './components/commons/NavBar/NavBar';
 import './App.css';
-// import firebase from 'firebase';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';

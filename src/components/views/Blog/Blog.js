@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-//import firebase from 'firebase';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
-import "../../../../node_modules/react-quill/dist/quill.core.css";
 import ScrollTop from './../../commons/BackToTop/BackToTop'
+import "../../../../node_modules/react-quill/dist/quill.core.css";
 import CommentsInput from '../../commons/Comments/CommentsInput';
-import { Divider, Typography, Collapse } from 'antd';
-import { FacebookShareButton, TwitterShareButton} from 'react-share';
+import { 
+    Divider, 
+    Typography, 
+    Collapse, 
+    Spin } from 'antd';
 import { Helmet } from 'react-helmet';
+import { FacebookShareButton, TwitterShareButton} from 'react-share';
 import { SocialMediaIconsReact } from 'social-media-icons-react';
 
 const { Title } = Typography;
@@ -22,22 +25,27 @@ export default class Blog extends Component {
 
         this.state = {
             result: null,
-            fetching: false,
+            fetching: true,
             content: null,
             cover: ''
         }
     }
 
     UNSAFE_componentWillMount() {
+        
+    }
+
+    componentDidMount(){
         console.log(this.props)
-        document.title = this.props.match.params.title;
+        //document.title = this.props.match.params.title;
         this.setState({ fetching: true });
         const postId = this.props.match.params.postId;
         try{
         var starCountRef = firebase.database().ref('Blogs/' + postId);
         console.log(starCountRef)
         starCountRef.on('value', snapshot => {
-            if (snapshot.val() == null) {
+            console.log(snapshot.val())
+            if (snapshot.val() === null) {
                 console.log("ERROR");
                 this.setState({
                     result: (
@@ -62,10 +70,12 @@ export default class Blog extends Component {
                     <h5>Hubo un error obteniendo los datos :(</h5>
                 )
             })
-            this.setState({ fetching: false })
+            setTimeout(
+                this.setState({ fetching: false }),
+                2000
+            );
         }
     }
-
 
 
 
@@ -98,10 +108,9 @@ export default class Blog extends Component {
                 </Helmet>
                 <div id="top"></div>
                 {this.state.fetching ?
-                    (<h6>Cargando...</h6>) :
-                    (
-                        <div className="postBody">
-                            <div className="post-title"
+                    <Spin size="large" /> :
+                    <div className="postBody">
+                             <div className="post-title"
                             style={{
                                 backgroundImage:`url(${this.state.result.cover})`
                             }}
@@ -164,8 +173,6 @@ export default class Blog extends Component {
                                 </TwitterShareButton>
                             </div>
                         </div>
-
-                    )
                 }
                 <ScrollTop opType='1'>
                     <Fab className="colorInherit"

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Avatar } from '@material-ui/core';
-//import firebase from 'firebase';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 import { message, Comment, Form, Tooltip, Button, Checkbox } from 'antd';
