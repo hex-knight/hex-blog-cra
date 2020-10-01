@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-//import firebase from 'firebase';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 import { Row, Pagination, Spin } from 'antd';
 import './Blog.css';
-//import logo from '../../../../j';
 import BlogList from '../../../commons/Lists/BlogList';
-//import SearchBlog from '../../../commons/SearchBlog/SearchBlog';
 import GridOnIcon from '@material-ui/icons/GridOn';
 import TocIcon from '@material-ui/icons/Toc';
-
-
 import BlogContext from '../../../../contex/context'
 import { LoadingOutlined } from '@ant-design/icons';
 

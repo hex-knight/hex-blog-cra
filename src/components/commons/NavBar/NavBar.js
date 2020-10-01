@@ -3,7 +3,6 @@ import LeftMenu from './Sections/LeftMenu';
 import { Drawer, Button, Icon, Menu } from 'antd';
 import './Sections/Navbar.css';
 import logo from './../../../hex.png';
-
 import { VpnKey, ExitToApp } from '@material-ui/icons/';
 import BlogContext from '../../../contex/context';
 import SearchBlog from '../SearchBlog/SearchBlog';
