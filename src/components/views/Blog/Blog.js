@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 //import firebase from 'firebase';
-import * as firebase from 'firebase/app';
-import 'firebase/database';
+// import * as firebase from 'firebase/app';
+// import 'firebase/database';
 import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import "../../../../node_modules/react-quill/dist/quill.core.css";
 import ScrollTop from './../../commons/BackToTop/BackToTop'
-import CommentsInput from '../../commons/Comments/CommentsInput';
-import { Divider, Typography, Collapse } from 'antd';
-import { FacebookShareButton, TwitterShareButton} from 'react-share';
+// import CommentsInput from '../../commons/Comments/CommentsInput';
+// import { Divider, Typography, Collapse } from 'antd';
+// import { FacebookShareButton, TwitterShareButton} from 'react-share';
 import { Helmet } from 'react-helmet';
-import { SocialMediaIconsReact } from 'social-media-icons-react';
+// import { SocialMediaIconsReact } from 'social-media-icons-react';
 
-const { Title } = Typography;
-const { Panel } = Collapse;
+// const { Title } = Typography;
+// const { Panel } = Collapse;
 
 export default class Blog extends Component {
     constructor(props) {
@@ -28,43 +28,43 @@ export default class Blog extends Component {
         }
     }
 
-    UNSAFE_componentWillMount() {
-        console.log(this.props)
-        document.title = this.props.match.params.title;
-        this.setState({ fetching: true });
-        const postId = this.props.match.params.postId;
-        try{
-        var starCountRef = firebase.database().ref('Blogs/' + postId);
-        console.log(starCountRef)
-        starCountRef.on('value', snapshot => {
-            if (snapshot.val() == null) {
-                console.log("ERROR");
-                this.setState({
-                    result: (
-                        <h5>Hubo un error obteniendo los datos :(</h5>
-                    )
-                })
-                this.setState({ fetching: false })
-            } else {
-                let Post = snapshot.val()
-                console.log(Post);
-                this.setState({ result: Post, cover: Post.cover })
-                setTimeout(
-                    this.setState({ fetching: false }),
-                    2000
-                );
-            }
-        });}
-        catch(error){
-            console.log("ERROR: ",error)
-            this.setState({
-                result: (
-                    <h5>Hubo un error obteniendo los datos :(</h5>
-                )
-            })
-            this.setState({ fetching: false })
-        }
-    }
+    // UNSAFE_componentWillMount() {
+    //     console.log(this.props)
+    //     document.title = this.props.match.params.title;
+    //     this.setState({ fetching: true });
+    //     const postId = this.props.match.params.postId;
+    //     try{
+    //     var starCountRef = firebase.database().ref('Blogs/' + postId);
+    //     console.log(starCountRef)
+    //     starCountRef.on('value', snapshot => {
+    //         if (snapshot.val() == null) {
+    //             console.log("ERROR");
+    //             this.setState({
+    //                 result: (
+    //                     <h5>Hubo un error obteniendo los datos :(</h5>
+    //                 )
+    //             })
+    //             this.setState({ fetching: false })
+    //         } else {
+    //             let Post = snapshot.val()
+    //             console.log(Post);
+    //             this.setState({ result: Post, cover: Post.cover })
+    //             setTimeout(
+    //                 this.setState({ fetching: false }),
+    //                 2000
+    //             );
+    //         }
+    //     });}
+    //     catch(error){
+    //         console.log("ERROR: ",error)
+    //         this.setState({
+    //             result: (
+    //                 <h5>Hubo un error obteniendo los datos :(</h5>
+    //             )
+    //         })
+    //         this.setState({ fetching: false })
+    //     }
+    // }
 
 
 
@@ -97,7 +97,7 @@ export default class Blog extends Component {
                     />
                 </Helmet>
                 <div id="top"></div>
-                {this.state.fetching ?
+                {/* {this.state.fetching ?
                     (<h6>Cargando...</h6>) :
                     (
                         <div className="postBody">
@@ -166,7 +166,7 @@ export default class Blog extends Component {
                         </div>
 
                     )
-                }
+                } */}
                 <ScrollTop opType='1'>
                     <Fab className="colorInherit"
                         color="inherit" size="small" aria-label="scroll back to top">

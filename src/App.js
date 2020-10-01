@@ -58,31 +58,31 @@ class App extends Component {
         this.setState({user:null});
       }
     })
-    var starCountRef = firebase.database().ref('Blogs/');
-        starCountRef.on('value', async snapshot => {
-            //console.log(Object.getOwnPropertyNames(snapshot.val()));
-            if (snapshot.val() == null) {
-                this.setState({
-                    cards: (
-                        [<h5>No existen blogs disponibles :(</h5>]
-                    )
-                })
-            } else {
+    // var starCountRef = firebase.database().ref('Blogs/');
+    //     starCountRef.on('value', async snapshot => {
+    //         //console.log(Object.getOwnPropertyNames(snapshot.val()));
+    //         if (snapshot.val() == null) {
+    //             this.setState({
+    //                 cards: (
+    //                     [<h5>No existen blogs disponibles :(</h5>]
+    //                 )
+    //             })
+    //         } else {
 
-                const ids = Object.getOwnPropertyNames(snapshot.val()).reverse();
-                let values = Object.values(snapshot.val()).reverse();
-                let content = values.map((entry, index)=>{
-                    // entry = {...entry}
-                    // entry.postId=ids[index];
-                    return entry={
-                        ...entry,
-                        idBlog: ids[index]
-                    }
-                })
-                //this.context.changeDataSet(content);
-                this.changeDataSet(content)
-            }
-        });
+    //             const ids = Object.getOwnPropertyNames(snapshot.val()).reverse();
+    //             let values = Object.values(snapshot.val()).reverse();
+    //             let content = values.map((entry, index)=>{
+    //                 // entry = {...entry}
+    //                 // entry.postId=ids[index];
+    //                 return entry={
+    //                     ...entry,
+    //                     idBlog: ids[index]
+    //                 }
+    //             })
+    //             //this.context.changeDataSet(content);
+    //             this.changeDataSet(content)
+    //         }
+    //     });
   }
 
   handleAuth(){
