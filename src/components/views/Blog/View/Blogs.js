@@ -56,6 +56,8 @@ class Blogs extends Component {
                         idBlog: ids[index]
                     }
                 })
+                console.log("content ids: ",content)
+                console.log("ids: ",ids)
                 this.context.changeDataSet(content);
                 this.setState({
                     totalItems: content.length,

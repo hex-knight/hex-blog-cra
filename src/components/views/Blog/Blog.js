@@ -29,11 +29,13 @@ export default class Blog extends Component {
     }
 
     UNSAFE_componentWillMount() {
+        console.log(this.props)
         document.title = this.props.match.params.title;
         this.setState({ fetching: true });
         const postId = this.props.match.params.postId;
         try{
         var starCountRef = firebase.database().ref('Blogs/' + postId);
+        console.log(starCountRef)
         starCountRef.on('value', snapshot => {
             if (snapshot.val() == null) {
                 console.log("ERROR");
@@ -45,7 +47,7 @@ export default class Blog extends Component {
                 this.setState({ fetching: false })
             } else {
                 let Post = snapshot.val()
-
+                console.log(Post);
                 this.setState({ result: Post, cover: Post.cover })
                 setTimeout(
                     this.setState({ fetching: false }),
