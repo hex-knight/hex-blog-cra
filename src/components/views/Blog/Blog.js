@@ -37,6 +37,7 @@ export default class Blog extends Component {
         var starCountRef = firebase.database().ref('Blogs/' + postId);
         console.log(starCountRef)
         starCountRef.on('value', snapshot => {
+            console.log(snapshot.val())
             if (snapshot.val() === null) {
                 console.log("ERROR");
                 this.setState({
@@ -62,7 +63,10 @@ export default class Blog extends Component {
                     <h5>Hubo un error obteniendo los datos :(</h5>
                 )
             })
-            this.setState({ fetching: false })
+            setTimeout(
+                this.setState({ fetching: false }),
+                2000
+            );
         }
     }
 
@@ -97,76 +101,82 @@ export default class Blog extends Component {
                     />
                 </Helmet>
                 <div id="top"></div>
-                {/* {this.state.fetching ?
+                {this.state.fetching ?
                     (<h6>Cargando...</h6>) :
-                    (
-                        <div className="postBody">
-                            <div className="post-title"
-                            style={{
-                                backgroundImage:`url(${this.state.result.cover})`
-                            }}
-                            >
-                            <Title level={2}
-                            >
-                                {this.state.result.titulo !== '' ?
-                                    this.state.result.titulo :
-                                    this.state.result.fecha
-                                }
-                            </Title>
-                            </div>
-                            {
-                                this.state.result.titulo !== '' ?
-                                    (
-                                        <div className="date">
-                                            <h4 >{this.state.result.fecha}</h4>
-                                        </div>
-                                    ) : null
-                            }
-                            <Divider />
-                            <div
-                                className="ql-editor"
-                                dangerouslySetInnerHTML={{ __html: this.state.result.contenido }} />
-                            <div className="comments">
-                                <Divider />
-                                <Collapse className="collapsable"
-                                    bordered={false}>
-                                    <Panel header="Comentarios" key="1">
-                                        <CommentsInput
-                                            postId={this.props.match.params.postId}
-                                            user={this.props.user}
-                                            isAuth={this.props.isAuth}
-                                            handleAuth={this.props.handleAuth}
-                                        />
-                                    </Panel>
-                                </Collapse>
-                            </div>
-                            <div className="shareArea">
+                    <div>
+                    <p>{this.state.result.titulo}</p>
+                    <p>{this.state.result.fecha}</p>
+                    <div dangerouslySetInnerHTML={{ __html: this.state.result.contenido }} />
+                    </div>
 
-                                <FacebookShareButton className="shareButtons"
-                                    url={window.location.href}
-                                    title={this.props.match.params.title}
-                                >
-                                    <SocialMediaIconsReact borderColor="rgba(7,7,7,0.25)"
-                                        borderWidth="5" borderStyle="solid" icon="facebook"
-                                        iconColor="rgba(215,215,215,1)" backgroundColor="rgba(0,0,0,1)"
-                                        iconSize="7" roundness="50%"
-                                        size="30" />
-                                </FacebookShareButton>
-                                <TwitterShareButton className="shareButtons"
-                                    url={window.location.href}
-                                    title={this.props.match.params.title}
-                                >
-                                    <SocialMediaIconsReact borderColor="rgba(7,7,7,0.25)"
-                                        borderWidth="5" borderStyle="solid" icon="twitter"
-                                        iconColor="rgba(215,215,215,1)" backgroundColor="rgba(0,0,0,1)"
-                                        iconSize="7" roundness="50%"
-                                        size="30" />
-                                </TwitterShareButton>
-                            </div>
-                        </div>
+                    // (
+                    //     <div className="postBody">
+                    //         <div className="post-title"
+                    //         style={{
+                    //             backgroundImage:`url(${this.state.result.cover})`
+                    //         }}
+                    //         >
+                    //         <Title level={2}
+                    //         >
+                    //             {this.state.result.titulo !== '' ?
+                    //                 this.state.result.titulo :
+                    //                 this.state.result.fecha
+                    //             }
+                    //         </Title>
+                    //         </div>
+                    //         {
+                    //             this.state.result.titulo !== '' ?
+                    //                 (
+                    //                     <div className="date">
+                    //                         <h4 >{this.state.result.fecha}</h4>
+                    //                     </div>
+                    //                 ) : null
+                    //         }
+                    //         <Divider />
+                    //         <div
+                    //             className="ql-editor"
+                    //             dangerouslySetInnerHTML={{ __html: this.state.result.contenido }} />
+                    //         <div className="comments">
+                    //             <Divider />
+                    //             <Collapse className="collapsable"
+                    //                 bordered={false}>
+                    //                 <Panel header="Comentarios" key="1">
+                    //                     <CommentsInput
+                    //                         postId={this.props.match.params.postId}
+                    //                         user={this.props.user}
+                    //                         isAuth={this.props.isAuth}
+                    //                         handleAuth={this.props.handleAuth}
+                    //                     />
+                    //                 </Panel>
+                    //             </Collapse>
+                    //         </div>
+                    //         <div className="shareArea">
 
-                    )
-                } */}
+                    //             <FacebookShareButton className="shareButtons"
+                    //                 url={window.location.href}
+                    //                 title={this.props.match.params.title}
+                    //             >
+                    //                 <SocialMediaIconsReact borderColor="rgba(7,7,7,0.25)"
+                    //                     borderWidth="5" borderStyle="solid" icon="facebook"
+                    //                     iconColor="rgba(215,215,215,1)" backgroundColor="rgba(0,0,0,1)"
+                    //                     iconSize="7" roundness="50%"
+                    //                     size="30" />
+                    //             </FacebookShareButton>
+                    //             <TwitterShareButton className="shareButtons"
+                    //                 url={window.location.href}
+                    //                 title={this.props.match.params.title}
+                    //             >
+                    //                 <SocialMediaIconsReact borderColor="rgba(7,7,7,0.25)"
+                    //                     borderWidth="5" borderStyle="solid" icon="twitter"
+                    //                     iconColor="rgba(215,215,215,1)" backgroundColor="rgba(0,0,0,1)"
+                    //                     iconSize="7" roundness="50%"
+                    //                     size="30" />
+                    //             </TwitterShareButton>
+                    //         </div>
+                    //     </div>
+
+                    // )
+                }
                 <ScrollTop opType='1'>
                     <Fab className="colorInherit"
                         color="inherit" size="small" aria-label="scroll back to top">
