@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 //import firebase from 'firebase';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
-import Fab from '@material-ui/core/Fab';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+// import Fab from '@material-ui/core/Fab';
+// import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+// import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+//import ScrollTop from './../../commons/BackToTop/BackToTop'
 import "../../../../node_modules/react-quill/dist/quill.core.css";
-import ScrollTop from './../../commons/BackToTop/BackToTop'
 //import CommentsInput from '../../commons/Comments/CommentsInput';
 import { 
     Divider, 
@@ -161,13 +161,8 @@ export default class Blog extends Component {
                                 </TwitterShareButton>
                             </div>
                         </div>
-
-                    // (
-                    //     
-
-                    // )
                 }
-                <ScrollTop opType='1'>
+                {/* <ScrollTop opType='1'>
                     <Fab className="colorInherit"
                         color="inherit" size="small" aria-label="scroll back to top">
                         <KeyboardArrowUpIcon />
@@ -178,7 +173,7 @@ export default class Blog extends Component {
                         color="inherit" size="small" aria-label="scroll back to top">
                         <KeyboardArrowLeftIcon />
                     </Fab>
-                </ScrollTop>
+                </ScrollTop> */}
             </div>
         )
     }
