@@ -32,6 +32,7 @@ export default class Blog extends Component {
         document.title = this.props.match.params.title;
         this.setState({ fetching: true });
         const postId = this.props.match.params.postId;
+        try{
         var starCountRef = firebase.database().ref('Blogs/' + postId);
         starCountRef.on('value', snapshot => {
             if (snapshot.val() == null) {
@@ -51,7 +52,16 @@ export default class Blog extends Component {
                     2000
                 );
             }
-        });
+        });}
+        catch(error){
+            console.log("ERROR: ",error)
+            this.setState({
+                result: (
+                    <h5>Hubo un error obteniendo los datos :(</h5>
+                )
+            })
+            this.setState({ fetching: false })
+        }
     }
 
 
