@@ -6,7 +6,7 @@ import logo from './../../../hex.png';
 
 import { VpnKey, ExitToApp } from '@material-ui/icons/';
 import BlogContext from '../../../contex/context';
-//import SearchBlog from '../SearchBlog/SearchBlog';
+import SearchBlog from '../SearchBlog/SearchBlog';
 
 class NavBar extends Component {
   constructor(props) {
@@ -81,7 +81,7 @@ class NavBar extends Component {
         <div className="menu_rigth">
         <Menu mode="horizontal">
         <Menu.Item key="search">
-              {/* <SearchBlog source={this.context.dataSet}/> */}
+              <SearchBlog source={this.context.dataSet}/>
             </Menu.Item>
           <Menu.Item key="Login">
             {this.renderLoginButton()}
@@ -126,7 +126,7 @@ class NavBar extends Component {
             </Menu.Item>
           ) : null}
         </Menu>
-        {/* <SearchBlog source={this.context.dataSet}/> */}
+        <SearchBlog source={this.context.dataSet}/>
         </Drawer>
       </div>
     </nav>
