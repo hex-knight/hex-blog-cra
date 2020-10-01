@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 //import firebase from 'firebase';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
-// import Fab from '@material-ui/core/Fab';
-// import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-// import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
-//import ScrollTop from './../../commons/BackToTop/BackToTop'
+import Fab from '@material-ui/core/Fab';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import ScrollTop from './../../commons/BackToTop/BackToTop'
 import "../../../../node_modules/react-quill/dist/quill.core.css";
 //import CommentsInput from '../../commons/Comments/CommentsInput';
 import { 
@@ -13,9 +13,9 @@ import {
     Typography, 
     //Collapse, 
     Spin } from 'antd';
-import { FacebookShareButton, TwitterShareButton} from 'react-share';
+//import { FacebookShareButton, TwitterShareButton} from 'react-share';
 import { Helmet } from 'react-helmet';
-import { SocialMediaIconsReact } from 'social-media-icons-react';
+//import { SocialMediaIconsReact } from 'social-media-icons-react';
 
 const { Title } = Typography;
 //const { Panel } = Collapse;
@@ -137,7 +137,7 @@ export default class Blog extends Component {
                                 className="ql-editor"
                                 dangerouslySetInnerHTML={{ __html: this.state.result.contenido }} />
                             
-                            <div className="shareArea">
+                            {/* <div className="shareArea">
 
                                 <FacebookShareButton className="shareButtons"
                                     url={window.location.href}
@@ -159,10 +159,10 @@ export default class Blog extends Component {
                                         iconSize="7" roundness="50%"
                                         size="30" />
                                 </TwitterShareButton>
-                            </div>
+                            </div> */}
                         </div>
                 }
-                {/* <ScrollTop opType='1'>
+                <ScrollTop opType='1'>
                     <Fab className="colorInherit"
                         color="inherit" size="small" aria-label="scroll back to top">
                         <KeyboardArrowUpIcon />
@@ -173,7 +173,7 @@ export default class Blog extends Component {
                         color="inherit" size="small" aria-label="scroll back to top">
                         <KeyboardArrowLeftIcon />
                     </Fab>
-                </ScrollTop> */}
+                </ScrollTop>
             </div>
         )
     }
