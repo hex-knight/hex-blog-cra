@@ -11,14 +11,14 @@ import ScrollTop from './../../commons/BackToTop/BackToTop'
 import { 
     Divider, 
     Typography, 
-    Collapse, 
+    //Collapse, 
     Spin } from 'antd';
 import { FacebookShareButton, TwitterShareButton} from 'react-share';
 import { Helmet } from 'react-helmet';
 import { SocialMediaIconsReact } from 'social-media-icons-react';
 
 const { Title } = Typography;
-const { Panel } = Collapse;
+//const { Panel } = Collapse;
 
 export default class Blog extends Component {
     constructor(props) {
@@ -136,20 +136,7 @@ export default class Blog extends Component {
                             <div
                                 className="ql-editor"
                                 dangerouslySetInnerHTML={{ __html: this.state.result.contenido }} />
-                            <div className="comments">
-                                <Divider />
-                                <Collapse className="collapsable"
-                                    bordered={false}>
-                                    <Panel header="Comentarios" key="1">
-                                        {/* <CommentsInput
-                                            postId={this.props.match.params.postId}
-                                            user={this.props.user}
-                                            isAuth={this.props.isAuth}
-                                            handleAuth={this.props.handleAuth}
-                                        /> */}
-                                    </Panel>
-                                </Collapse>
-                            </div>
+                            
                             <div className="shareArea">
 
                                 <FacebookShareButton className="shareButtons"
