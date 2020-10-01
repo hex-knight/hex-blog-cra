@@ -11,7 +11,9 @@ import { Input } from '@material-ui/core';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import EditableTagGroup from '../../../commons/Tags/EditableTagGroup';
 import ImgCrop from 'antd-img-crop';
-import firebase from 'firebase';
+//import firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
 import moment from 'moment';
 const { Title } = Typography;
 

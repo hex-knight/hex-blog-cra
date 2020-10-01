@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
+//import firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
 import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';

@@ -5,7 +5,8 @@ import '../../views/Blog/View/Blog.css';
 import logo from '../../../../src/hex.png';
 import BlogContext from '../../../contex/context';
 import { DeleteOutlined } from '@ant-design/icons';
-import firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
 
 export default class BlogList extends PureComponent {
     constructor(props) {

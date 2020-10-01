@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import NavBar from './components/commons/NavBar/NavBar';
 import './App.css';
-import firebase from 'firebase';
+// import firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth';
 import Footer from './components/commons/Footer/Footer';
 import { Route } from 'react-router-dom';
 import Home from './components/views/Home/Home';
