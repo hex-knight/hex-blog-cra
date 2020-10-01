@@ -13,9 +13,9 @@ import {
     Typography, 
     Collapse, 
     Spin } from 'antd';
-//import { FacebookShareButton, TwitterShareButton} from 'react-share';
 import { Helmet } from 'react-helmet';
-//import { SocialMediaIconsReact } from 'social-media-icons-react';
+import { FacebookShareButton, TwitterShareButton} from 'react-share';
+import { SocialMediaIconsReact } from 'social-media-icons-react';
 
 const { Title } = Typography;
 const { Panel } = Collapse;
@@ -150,7 +150,7 @@ export default class Blog extends Component {
                                     </Panel>
                                 </Collapse>
                             </div>
-                            {/* <div className="shareArea">
+                            <div className="shareArea">
 
                                 <FacebookShareButton className="shareButtons"
                                     url={window.location.href}
@@ -172,7 +172,7 @@ export default class Blog extends Component {
                                         iconSize="7" roundness="50%"
                                         size="30" />
                                 </TwitterShareButton>
-                            </div> */}
+                            </div>
                         </div>
                 }
                 <ScrollTop opType='1'>
