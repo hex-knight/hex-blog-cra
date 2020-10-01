@@ -7,14 +7,14 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import "../../../../node_modules/react-quill/dist/quill.core.css";
 import ScrollTop from './../../commons/BackToTop/BackToTop'
-// import CommentsInput from '../../commons/Comments/CommentsInput';
-// import { Divider, Typography, Collapse } from 'antd';
-// import { FacebookShareButton, TwitterShareButton} from 'react-share';
+import CommentsInput from '../../commons/Comments/CommentsInput';
+import { Divider, Typography, Collapse, Spin } from 'antd';
+import { FacebookShareButton, TwitterShareButton} from 'react-share';
 import { Helmet } from 'react-helmet';
-// import { SocialMediaIconsReact } from 'social-media-icons-react';
+import { SocialMediaIconsReact } from 'social-media-icons-react';
 
-// const { Title } = Typography;
-// const { Panel } = Collapse;
+const { Title } = Typography;
+const { Panel } = Collapse;
 
 export default class Blog extends Component {
     constructor(props) {
@@ -22,13 +22,17 @@ export default class Blog extends Component {
 
         this.state = {
             result: null,
-            fetching: false,
+            fetching: true,
             content: null,
             cover: ''
         }
     }
 
     UNSAFE_componentWillMount() {
+        
+    }
+
+    componentDidMount(){
         console.log(this.props)
         //document.title = this.props.match.params.title;
         this.setState({ fetching: true });
@@ -72,7 +76,6 @@ export default class Blog extends Component {
 
 
 
-
     render() {
         return (
             <div className="postPage" style={{ color: '#4b4b4b' }}>
@@ -102,10 +105,29 @@ export default class Blog extends Component {
                 </Helmet>
                 <div id="top"></div>
                 {this.state.fetching ?
-                    (<h6>Cargando...</h6>) :
+                    <Spin size="large" /> :
                     <div>
-                    <p>{this.state.result.titulo}</p>
-                    <p>{this.state.result.fecha}</p>
+                         <div className="post-title"
+                            style={{
+                                backgroundImage:`url(${this.state.result.cover})`
+                            }}
+                            >
+                    <Title level={2}
+                            >
+                                {this.state.result.titulo !== '' ?
+                                    this.state.result.titulo :
+                                    this.state.result.fecha
+                                }
+                            </Title>
+                    </div>
+                    {
+                                this.state.result.titulo !== '' ?
+                                    (
+                                        <div className="date">
+                                            <h4 >{this.state.result.fecha}</h4>
+                                        </div>
+                                    ) : null
+                            }
                     <div dangerouslySetInnerHTML={{ __html: this.state.result.contenido }} />
                     </div>
 
