@@ -9,9 +9,8 @@ import "../../../../node_modules/react-quill/dist/quill.core.css";
 import ScrollTop from './../../commons/BackToTop/BackToTop'
 import CommentsInput from '../../commons/Comments/CommentsInput';
 import { Divider, Typography, Collapse } from 'antd';
-import { FacebookShareButton, TwitterShareButton} from 'react-share';
+import { FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon} from 'react-share';
 import { Helmet } from 'react-helmet';
-import { SocialMediaIconsReact } from 'social-media-icons-react';
 
 const { Title } = Typography;
 const { Panel } = Collapse;
@@ -141,26 +140,17 @@ export default class Blog extends Component {
                                 </Collapse>
                             </div>
                             <div className="shareArea">
-
                                 <FacebookShareButton className="shareButtons"
                                     url={window.location.href}
                                     title={this.props.match.params.title}
                                 >
-                                    <SocialMediaIconsReact borderColor="rgba(7,7,7,0.25)"
-                                        borderWidth="5" borderStyle="solid" icon="facebook"
-                                        iconColor="rgba(215,215,215,1)" backgroundColor="rgba(0,0,0,1)"
-                                        iconSize="7" roundness="50%"
-                                        size="30" />
+                                 <FacebookIcon size={32} round={true}/>
                                 </FacebookShareButton>
                                 <TwitterShareButton className="shareButtons"
                                     url={window.location.href}
                                     title={this.props.match.params.title}
                                 >
-                                    <SocialMediaIconsReact borderColor="rgba(7,7,7,0.25)"
-                                        borderWidth="5" borderStyle="solid" icon="twitter"
-                                        iconColor="rgba(215,215,215,1)" backgroundColor="rgba(0,0,0,1)"
-                                        iconSize="7" roundness="50%"
-                                        size="30" />
+                                  <TwitterIcon size={32} round={true}/>
                                 </TwitterShareButton>
                             </div>
                         </div>

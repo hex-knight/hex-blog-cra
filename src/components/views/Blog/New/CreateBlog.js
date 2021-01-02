@@ -14,6 +14,7 @@ import ImgCrop from 'antd-img-crop';
 //import firebase from 'firebase';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
+import 'firebase/storage';
 import moment from 'moment';
 const { Title } = Typography;
 
